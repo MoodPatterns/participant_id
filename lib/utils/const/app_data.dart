@@ -2,13 +2,9 @@ import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:participant_id/utils/models/layout_properties.dart';
 
-/// App static functions and constants used in the example applications.
-///
-/// In a real app you probably prefer putting these into different static
-/// classes that serves your application's usage. For these examples I
-/// put them all in the same class, except the colors that are in their
-/// own class.
+
 class AppData {
   // This class is not meant to be instantiated or extended; this constructor
   // prevents instantiation and extension.
@@ -20,32 +16,38 @@ class AppData {
   // this demo app, that works pretty well in this use case too.
   static const double maxBodyWidth = 1000;
 
-  // The minimum media size needed for desktop/large tablet menu view.
-  // Only at higher than this breakpoint will the menu open and be possible
-  // to toggle between menu and rail. Below this breakpoint it toggles between
-  // hidden in the Drawer and rail, also on phones. This size was mostly chosen
-  // based on what worked well for the content in the staggered column view.
+  static const double bigDesktopWidthBreakpoint = 2800;
   static const double desktopBreakpoint = 1150;
-  // The minimum media width treated as a phone device in this demo.
   static const double phoneBreakpoint = 600;
 
   // Edge padding insets for page content on the screen.
   static const double edgeInsetsPhone = 8;
   static const double edgeInsetsTablet = 14;
   static const double edgeInsetsDesktop = 18;
-  // Used by grid layout when in >= 4 column layout mode.
   static const double edgeInsetsBigDesktop = 24;
 
-  // Opacity of the popup menu in example 5, just set via a const to
-  // show and use a property not in the controller.
-  static const double popupMenuOpacity = 0.95;
+
+  static const double scalingFactorPhone =  1;
+  static const double scalingFactorTablet = 1.5;
+  static const double scalingFactorDesktop = 2;
+  static const double scalingFactorBigDesktop = 3;
+
+
+  static double textScalingFactor(double width) {
+    if (width < phoneBreakpoint) return scalingFactorPhone;
+    if (width < desktopBreakpoint) return scalingFactorTablet;
+    if (width < bigDesktopWidthBreakpoint) return scalingFactorDesktop;
+    return scalingFactorBigDesktop;
+  }
+
 
   // Responsive insets based on width. The width may be from LayoutBuilder or
   // MediaQuery, depending on what is appropriate for the use case.
   static double responsiveInsets(double width) {
     if (width < phoneBreakpoint) return edgeInsetsPhone;
     if (width < desktopBreakpoint) return edgeInsetsTablet;
-    return edgeInsetsDesktop;
+    if (width < bigDesktopWidthBreakpoint) return edgeInsetsDesktop;
+    return edgeInsetsBigDesktop;
   }
 
 
@@ -108,4 +110,8 @@ class AppData {
   //     letterSpacing: 0.5, // Defaults to 1.5 in Material2018 Typography.
   //   ),
   );
+
+  static LayoutProperties layoutProperties(double width){
+    return LayoutProperties(responsiveInsets(width), textScalingFactor(width));
+  }
 }

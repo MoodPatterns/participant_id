@@ -21,11 +21,13 @@ void main() async {
   // Create a ThemeController that uses the ThemeService.
   GetIt.I.registerSingleton<ThemeController>(ThemeController(themeService));
 
+  await GetIt.I<ThemeController>().loadAll();
+
   runApp(
     EasyLocalization(
-        supportedLocales: const [Locale('en', 'US'),],
+        supportedLocales: const [Locale('en'),],
         path: 'assets/translations', // <-- change the path of the translation files
-        fallbackLocale: const Locale('en', 'US'),
+        fallbackLocale: const Locale('en'),
         child: MyApp(themeController: GetIt.I<ThemeController>()),
     )
   );
