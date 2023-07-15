@@ -33,6 +33,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
+  auto_size_text: ^3.0.0
   easy_localization: ^3.0.2
   flex_color_scheme: ^7.1.2
   flip_card: ^0.7.0
