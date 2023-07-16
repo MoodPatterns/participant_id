@@ -5,21 +5,22 @@ import 'package:flutter/material.dart';
 
 class DetailsCard extends StatelessWidget {
   final double padding;
+  final ThemeData theme;
   final double textScalingFactor;
-  final Color colorFrame;
   final IconData icon;
   final String header;
   final TextStyle headerStyle;
   final TextSpan explanation;
   final TextStyle explanationStyle;
 
-  const DetailsCard({super.key, required this.padding, required this.textScalingFactor, required this.colorFrame, required this.icon, required this.header, required this.headerStyle, required this.explanation, required this.explanationStyle});
+  const DetailsCard({super.key, required this.padding, required this.theme, required this.textScalingFactor, required this.icon, required this.header, required this.headerStyle, required this.explanation, required this.explanationStyle});
+
 
 
   @override
   Widget build(BuildContext context) {
     return Card(
-    color: colorFrame,
+    color: theme.primaryColor,
     child: FlipCard(
       front: Card(
         //color: theme.colorScheme.secondary,
@@ -41,9 +42,9 @@ class DetailsCard extends StatelessWidget {
                 child: AutoSizeText(
                   header,
                   textScaleFactor: textScalingFactor,
-                  style: headerStyle,
+                  style: theme.textTheme.titleLarge,
                   maxFontSize:
-                  headerStyle.fontSize!,
+                  theme.textTheme.titleLarge!.fontSize!,
                   textAlign: TextAlign.center,
                 ),
               )
@@ -57,7 +58,9 @@ class DetailsCard extends StatelessWidget {
           child: Center(
             child: AutoSizeText.rich(
               explanation,
-              style: explanationStyle,
+              style: theme.textTheme.bodyLarge,
+              maxFontSize:
+            theme.textTheme.bodyLarge!.fontSize!,
               textScaleFactor: textScalingFactor,
             ),
           ),

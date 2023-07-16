@@ -1,5 +1,7 @@
 {
   "app_name": "Participant Id",
   "create_participant_id": "Create a participant\u00a0ID",
-  "secure": "secure"
+  "its_":  "It is:",
+  "secure": "secure",
+  "short_description": "Converts things only you know into a reproducible but irreversible participant ID."
 }
