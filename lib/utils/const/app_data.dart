@@ -28,8 +28,8 @@ class AppData {
 
 
   static const double scalingFactorPhone =  1;
-  static const double scalingFactorTablet = 1.5;
-  static const double scalingFactorDesktop = 2;
+  static const double scalingFactorTablet = 1.4;
+  static const double scalingFactorDesktop = 1.8;
   static const double scalingFactorBigDesktop = 3;
 
 

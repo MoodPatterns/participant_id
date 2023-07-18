@@ -55,12 +55,9 @@ class DetailsCard extends StatelessWidget {
       back: Card(
         child: Padding(
           padding: EdgeInsets.all(padding),
-          child: Center(
-            child: AutoSizeText.rich(
-              explanation,
-              style: theme.textTheme.bodyLarge,
-              maxFontSize:
-            theme.textTheme.bodyLarge!.fontSize!,
+          child: SingleChildScrollView(
+            child: RichText(
+              text: explanation,
               textScaleFactor: textScalingFactor,
             ),
           ),

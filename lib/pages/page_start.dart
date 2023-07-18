@@ -1,12 +1,14 @@
 import 'dart:math';
 
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flip_card/flip_card.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_remix/flutter_remix.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:participant_id/utils/const/app_data.dart';
 import 'package:participant_id/widgets/details_card.dart';
 import 'package:participant_id/widgets/page_body.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class PageStart extends StatelessWidget {
   const PageStart({super.key});
@@ -36,6 +38,7 @@ class PageStart extends StatelessWidget {
           controller: scrollController,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               TextButton(
                   onPressed: () {},
@@ -43,10 +46,15 @@ class PageStart extends StatelessWidget {
                     'create_participant_id',
                     style: theme.textTheme.displaySmall,
                     textScaleFactor: layoutProperties.textScalingFactor,
+                    textAlign: TextAlign.center,
                   ).tr()),
               SizedBox(height: layoutProperties.edgeInsets),
-              Text('short_description', style: theme.textTheme.titleMedium)
-                  .tr(),
+              Text(
+                'short_description',
+                style: theme.textTheme.titleSmall,
+                textScaleFactor: layoutProperties.textScalingFactor,
+                textAlign: TextAlign.center,
+              ).tr(),
               SizedBox(height: layoutProperties.edgeInsets),
               Card(
                 color: theme.colorScheme.secondary,
@@ -72,97 +80,67 @@ class PageStart extends StatelessWidget {
                         alignment: WrapAlignment.center,
                         children: [
                           SizedBox(
-                              width: cardWidth,
-                              height: cardWidth * 1.34,
-                              child: DetailsCard(
-                                padding: layoutProperties.edgeInsets,
-                                theme: theme,
-                                textScalingFactor:
-                                    layoutProperties.textScalingFactor,
-                                icon: Icons.security,
-                                header: 'secure'.tr(),
-                                headerStyle: theme.textTheme.headlineLarge!,
-                                explanation: const TextSpan(
-                                  text: 'Hello ',
-                                  children: <TextSpan>[
-                                    TextSpan(
-                                        text: 'bold',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold)),
-                                    TextSpan(text: ' world!'),
-                                  ],
-                                ),
-                                explanationStyle: theme.textTheme.bodyLarge!,
-                              )),
+                            width: cardWidth,
+                            height: cardWidth * 1.34,
+                            child: DetailsCard(
+                              padding: layoutProperties.edgeInsets,
+                              theme: theme,
+                              textScalingFactor:
+                                  layoutProperties.textScalingFactor,
+                              icon: FlutterRemix.shield_check_line,
+                              header: 'secure'.tr(),
+                              headerStyle: theme.textTheme.headlineLarge!,
+                              explanation: TextSpan(
+                                text: 'md5_explanation'.tr(),
+                                style: theme.textTheme.bodySmall,
+                              ),
+                              explanationStyle: theme.textTheme.bodyLarge!,
+                            ),
+                          ),
                           SizedBox(
                             width: cardWidth,
                             height: cardWidth * 1.34,
-                            child: Card(
-                              color: theme.primaryColor,
-                              child: FlipCard(
-                                front: Card(
-                                  //color: theme.colorScheme.secondary,
-                                  child: Padding(
-                                    padding: EdgeInsets.all(
-                                        layoutProperties.edgeInsets),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.stretch,
-                                      children: [
-                                        const Flexible(
-                                          flex: 3,
-                                          child: FittedBox(
-                                              fit: BoxFit.fill,
-                                              child: Icon(Icons.shield)),
-                                        ),
-                                        Flexible(
-                                          flex: 1,
-                                          child: AutoSizeText(
-                                            'secure'.tr(),
-                                            textAlign: TextAlign.center,
-                                            textScaleFactor: layoutProperties
-                                                .textScalingFactor,
-                                            style:
-                                                theme.textTheme.headlineLarge,
-                                            maxFontSize: theme.textTheme
-                                                .headlineLarge!.fontSize!,
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                back: Card(
-                                  //color: theme.colorScheme.secondary,
-                                  child: Padding(
-                                    padding: EdgeInsets.all(
-                                        layoutProperties.edgeInsets),
-                                    child: Center(
-                                      child: AutoSizeText.rich(
-                                        const TextSpan(
-                                          text: 'Hello ',
-                                          children: <TextSpan>[
-                                            TextSpan(
-                                                text: 'bold',
-                                                style: TextStyle(
-                                                    fontWeight:
-                                                        FontWeight.bold)),
-                                            TextSpan(text: ' world!'),
-                                          ],
-                                        ),
-                                        style: theme.textTheme.bodyLarge,
-                                        textScaleFactor:
-                                            layoutProperties.textScalingFactor,
-                                      ),
-                                    ),
-                                  ),
-                                ),
+                            child: DetailsCard(
+                              padding: layoutProperties.edgeInsets,
+                              theme: theme,
+                              textScalingFactor:
+                                  layoutProperties.textScalingFactor,
+                              icon: MdiIcons.incognito,
+                              header: 'anonymous'.tr(),
+                              headerStyle: theme.textTheme.headlineLarge!,
+                              explanation: TextSpan(
+                                text: 'anonymous_explanation'.tr(),
+                                style: theme.textTheme.bodySmall,
                               ),
+                              explanationStyle: theme.textTheme.bodyLarge!,
                             ),
-                          )
+                          ),
+                          SizedBox(
+                            width: cardWidth,
+                            height: cardWidth * 1.34,
+                            child: DetailsCard(
+                              padding: layoutProperties.edgeInsets,
+                              theme: theme,
+                              textScalingFactor:
+                                  layoutProperties.textScalingFactor,
+                              icon: FlutterRemix.open_source_line,
+                              header: 'open_source'.tr(),
+                              headerStyle: theme.textTheme.headlineLarge!,
+                              explanation: TextSpan(
+                                text: 'open_source_explanation'.tr(),
+                                style: theme.textTheme.bodySmall,
+                                children: [
+                                  TextSpan(text: 'link_to_repository'.tr(),
+                                    style: TextStyle(
+                              color: theme.colorScheme.secondary,
+                              decoration: TextDecoration.underline,
+                            ),
+                            recognizer: TapGestureRecognizer()..onTap = _launchRepo,),
+                                ],
+                              ),
+                              explanationStyle: theme.textTheme.bodyLarge!,
+                            ),
+                          ),
                         ],
                       ),
                     ],
@@ -174,5 +152,14 @@ class PageStart extends StatelessWidget {
         ),
       ),
     ));
+  }
+
+  _launchRepo() async {
+    Uri url = Uri.parse('https://github.com/MoodPatterns/participant_id');
+    if (await launchUrl(url)) {
+      await launchUrl(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }
