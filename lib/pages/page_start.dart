@@ -10,6 +10,9 @@ import 'package:participant_id/widgets/details_card.dart';
 import 'package:participant_id/widgets/page_body.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../enums/nav_drawer_enum.dart';
+import '../widgets/nav_drawer.dart';
+
 class PageStart extends StatelessWidget {
   const PageStart({super.key});
 
@@ -26,10 +29,19 @@ class PageStart extends StatelessWidget {
     var cardWidth = List<double>.from([
       mq.size.width / 2,
       mq.size.height / 2,
-      200 * sqrt(layoutProperties.textScalingFactor)
+      200 * pow(layoutProperties.textScalingFactor,0.75)
     ]).reduce(min);
 
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+            icon: const Icon(Icons.menu),
+            onPressed: () => Scaffold.of(context).openDrawer()),
+        title: const Text("app_name").tr(),
+      ),
+        drawer: const NavDrawer(
+          selected: NavDrawerEnum.home,
+        ),
         body: Padding(
       padding: EdgeInsets.all(layoutProperties.edgeInsets),
       child: PageBody(
@@ -67,7 +79,7 @@ class PageStart extends StatelessWidget {
                         'its_',
                         style: theme.textTheme.titleLarge!.copyWith(
                             color: theme.colorScheme.onSecondary
-                                        .computeLuminance() >
+                                        .computeLuminance() <
                                     0.5
                                 ? Colors.black
                                 : Colors.white),

@@ -56,7 +56,7 @@ abstract class ThemeService {
 
   /// Default value for the schemeIndex, also used to reset settings.
 
-  static const int defaultSchemeIndex = 1;
+  static const int defaultSchemeIndex = 5;
 
   Future<int> schemeIndex();
 

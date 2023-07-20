@@ -45,7 +45,6 @@ class MyApp extends StatelessWidget {
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
-      title: 'app_name'.tr(),
       theme: FlexThemeData.light(
         useMaterial3: useMaterial3,
     // We moved the definition of the list of color schemes to use into
