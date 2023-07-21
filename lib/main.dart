@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get_it/get_it.dart';
 import 'package:participant_id/pages/page_start.dart';
@@ -13,6 +14,10 @@ import 'package:participant_id/utils/services/theme_service_hive.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // required to hide top bar during  splash on iOS
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [SystemUiOverlay.bottom, SystemUiOverlay.top], );
+
   await EasyLocalization.ensureInitialized();
 
   final ThemeService themeService = ThemeServiceHive(HiveKeys.themeFile);

@@ -13,9 +13,15 @@ import 'package:url_launcher/url_launcher.dart';
 import '../enums/nav_drawer_enum.dart';
 import '../widgets/nav_drawer.dart';
 
-class PageStart extends StatelessWidget {
+// the only reason it needs to be stateful is to show navdrawer  opening
+class PageStart extends StatefulWidget {
   const PageStart({super.key});
 
+  @override
+  State<PageStart> createState() => _PageStartState();
+}
+
+class _PageStartState extends State<PageStart> {
   @override
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
@@ -29,141 +35,147 @@ class PageStart extends StatelessWidget {
     var cardWidth = List<double>.from([
       mq.size.width / 2,
       mq.size.height / 2,
-      200 * pow(layoutProperties.textScalingFactor,0.75)
+      200 * pow(layoutProperties.textScalingFactor, 0.75)
     ]).reduce(min);
 
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-            icon: const Icon(Icons.menu),
-            onPressed: () => Scaffold.of(context).openDrawer()),
-        title: const Text("app_name").tr(),
-      ),
+        appBar: AppBar(
+          leading: Builder(
+            builder: (context) => // Ensure Scaffold is in context
+            IconButton(
+                icon: const Icon(Icons.menu),
+                onPressed: () => Scaffold.of(context).openDrawer()),
+          ),
+          title: const Text("app_name").tr(),
+        ),
         drawer: const NavDrawer(
           selected: NavDrawerEnum.home,
         ),
         body: Padding(
-      padding: EdgeInsets.all(layoutProperties.edgeInsets),
-      child: PageBody(
-        controller: scrollController,
-        child: SingleChildScrollView(
-          controller: scrollController,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    'create_participant_id',
-                    style: theme.textTheme.displaySmall,
+          padding: EdgeInsets.all(layoutProperties.edgeInsets),
+          child: PageBody(
+            controller: scrollController,
+            child: SingleChildScrollView(
+              controller: scrollController,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        'create_participant_id',
+                        style: theme.textTheme.displaySmall,
+                        textScaleFactor: layoutProperties.textScalingFactor,
+                        textAlign: TextAlign.center,
+                      ).tr()),
+                  SizedBox(height: layoutProperties.edgeInsets),
+                  Text(
+                    'short_description',
+                    style: theme.textTheme.titleSmall,
                     textScaleFactor: layoutProperties.textScalingFactor,
                     textAlign: TextAlign.center,
-                  ).tr()),
-              SizedBox(height: layoutProperties.edgeInsets),
-              Text(
-                'short_description',
-                style: theme.textTheme.titleSmall,
-                textScaleFactor: layoutProperties.textScalingFactor,
-                textAlign: TextAlign.center,
-              ).tr(),
-              SizedBox(height: layoutProperties.edgeInsets),
-              Card(
-                color: theme.colorScheme.secondary,
-                child: Padding(
-                  padding: EdgeInsets.all(layoutProperties.edgeInsets),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'its_',
-                        style: theme.textTheme.titleLarge!.copyWith(
-                            color: theme.colorScheme.onSecondary
-                                        .computeLuminance() <
-                                    0.5
-                                ? Colors.black
-                                : Colors.white),
-                        textScaleFactor: layoutProperties.textScalingFactor,
-                      ).tr(),
-                      SizedBox(height: layoutProperties.edgeInsets),
-                      Wrap(
-                        spacing: layoutProperties.edgeInsets,
-                        runSpacing: layoutProperties.edgeInsets,
-                        alignment: WrapAlignment.center,
+                  ).tr(),
+                  SizedBox(height: layoutProperties.edgeInsets),
+                  Card(
+                    color: theme.colorScheme.secondary,
+                    child: Padding(
+                      padding: EdgeInsets.all(layoutProperties.edgeInsets),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SizedBox(
-                            width: cardWidth,
-                            height: cardWidth * 1.34,
-                            child: DetailsCard(
-                              padding: layoutProperties.edgeInsets,
-                              theme: theme,
-                              textScalingFactor:
-                                  layoutProperties.textScalingFactor,
-                              icon: FlutterRemix.shield_check_line,
-                              header: 'secure'.tr(),
-                              headerStyle: theme.textTheme.headlineLarge!,
-                              explanation: TextSpan(
-                                text: 'md5_explanation'.tr(),
-                                style: theme.textTheme.bodySmall,
+                          Text(
+                            'its_',
+                            style: theme.textTheme.titleLarge!.copyWith(
+                                color: theme.colorScheme.onSecondary
+                                            .computeLuminance() <
+                                        0.5
+                                    ? Colors.black
+                                    : Colors.white),
+                            textScaleFactor: layoutProperties.textScalingFactor,
+                          ).tr(),
+                          SizedBox(height: layoutProperties.edgeInsets),
+                          Wrap(
+                            spacing: layoutProperties.edgeInsets,
+                            runSpacing: layoutProperties.edgeInsets,
+                            alignment: WrapAlignment.center,
+                            children: [
+                              SizedBox(
+                                width: cardWidth,
+                                height: cardWidth * 1.34,
+                                child: DetailsCard(
+                                  padding: layoutProperties.edgeInsets,
+                                  theme: theme,
+                                  textScalingFactor:
+                                      layoutProperties.textScalingFactor,
+                                  icon: FlutterRemix.shield_check_line,
+                                  header: 'secure'.tr(),
+                                  headerStyle: theme.textTheme.headlineLarge!,
+                                  explanation: TextSpan(
+                                    text: 'md5_explanation'.tr(),
+                                    style: theme.textTheme.bodySmall,
+                                  ),
+                                  explanationStyle: theme.textTheme.bodyLarge!,
+                                ),
                               ),
-                              explanationStyle: theme.textTheme.bodyLarge!,
-                            ),
-                          ),
-                          SizedBox(
-                            width: cardWidth,
-                            height: cardWidth * 1.34,
-                            child: DetailsCard(
-                              padding: layoutProperties.edgeInsets,
-                              theme: theme,
-                              textScalingFactor:
-                                  layoutProperties.textScalingFactor,
-                              icon: MdiIcons.incognito,
-                              header: 'anonymous'.tr(),
-                              headerStyle: theme.textTheme.headlineLarge!,
-                              explanation: TextSpan(
-                                text: 'anonymous_explanation'.tr(),
-                                style: theme.textTheme.bodySmall,
+                              SizedBox(
+                                width: cardWidth,
+                                height: cardWidth * 1.34,
+                                child: DetailsCard(
+                                  padding: layoutProperties.edgeInsets,
+                                  theme: theme,
+                                  textScalingFactor:
+                                      layoutProperties.textScalingFactor,
+                                  icon: MdiIcons.incognito,
+                                  header: 'anonymous'.tr(),
+                                  headerStyle: theme.textTheme.headlineLarge!,
+                                  explanation: TextSpan(
+                                    text: 'anonymous_explanation'.tr(),
+                                    style: theme.textTheme.bodySmall,
+                                  ),
+                                  explanationStyle: theme.textTheme.bodyLarge!,
+                                ),
                               ),
-                              explanationStyle: theme.textTheme.bodyLarge!,
-                            ),
-                          ),
-                          SizedBox(
-                            width: cardWidth,
-                            height: cardWidth * 1.34,
-                            child: DetailsCard(
-                              padding: layoutProperties.edgeInsets,
-                              theme: theme,
-                              textScalingFactor:
-                                  layoutProperties.textScalingFactor,
-                              icon: FlutterRemix.open_source_line,
-                              header: 'open_source'.tr(),
-                              headerStyle: theme.textTheme.headlineLarge!,
-                              explanation: TextSpan(
-                                text: 'open_source_explanation'.tr(),
-                                style: theme.textTheme.bodySmall,
-                                children: [
-                                  TextSpan(text: 'link_to_repository'.tr(),
-                                    style: TextStyle(
-                              color: theme.colorScheme.secondary,
-                              decoration: TextDecoration.underline,
-                            ),
-                            recognizer: TapGestureRecognizer()..onTap = _launchRepo,),
-                                ],
+                              SizedBox(
+                                width: cardWidth,
+                                height: cardWidth * 1.34,
+                                child: DetailsCard(
+                                  padding: layoutProperties.edgeInsets,
+                                  theme: theme,
+                                  textScalingFactor:
+                                      layoutProperties.textScalingFactor,
+                                  icon: FlutterRemix.open_source_line,
+                                  header: 'open_source'.tr(),
+                                  headerStyle: theme.textTheme.headlineLarge!,
+                                  explanation: TextSpan(
+                                    text: 'open_source_explanation'.tr(),
+                                    style: theme.textTheme.bodySmall,
+                                    children: [
+                                      TextSpan(
+                                        text: 'link_to_repository'.tr(),
+                                        style: TextStyle(
+                                          color: theme.colorScheme.secondary,
+                                          decoration: TextDecoration.underline,
+                                        ),
+                                        recognizer: TapGestureRecognizer()
+                                          ..onTap = _launchRepo,
+                                      ),
+                                    ],
+                                  ),
+                                  explanationStyle: theme.textTheme.bodyLarge!,
+                                ),
                               ),
-                              explanationStyle: theme.textTheme.bodyLarge!,
-                            ),
+                            ],
                           ),
                         ],
                       ),
-                    ],
-                  ),
-                ),
-              )
-            ],
+                    ),
+                  )
+                ],
+              ),
+            ),
           ),
-        ),
-      ),
-    ));
+        ));
   }
 
   _launchRepo() async {

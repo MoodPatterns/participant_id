@@ -84,10 +84,10 @@ class NavDrawer extends StatelessWidget {
               selected: selected == NavDrawerEnum.theme,
               selectedTileColor: Theme.of(context).focusColor,
               onTap: () {
-                selected == NavDrawerEnum.theme
-                    ? Get.back()
-                    : Get.to(() => const PageTheme(),
-                        transition: Transition.rightToLeftWithFade);
+                // selected == NavDrawerEnum.theme
+                //     ? Get.back()
+                //     : Get.to(() => const PageTheme(),
+                //         transition: Transition.rightToLeftWithFade);
               },
             ),
           ),

@@ -39,6 +39,7 @@ dependencies:
   flex_color_scheme: ^7.1.2
   flip_card: ^0.7.0
   flutter_remix: ^0.0.3
+  flutter_native_splash: ^2.3.1
   get: ^4.6.5
   get_it: ^7.6.0
   google_fonts: ^5.1.0
@@ -82,6 +83,8 @@ flutter:
   assets:
     - assets/translations/
     - assets/images/launcher/
+    - assets/images/misc/
+    - assets/images/splash/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
