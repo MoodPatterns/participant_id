@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:flutter_svg/svg.dart';
 import '../utils/helper_functions/string_utils.dart';
 import 'package:flutter/material.dart';
 //import 'package:flutter_svg/svg.dart';
@@ -37,20 +38,20 @@ class NavDrawer extends StatelessWidget {
         // Important: Remove any padding from the ListView.
         padding: EdgeInsets.zero,
         children: [
-          // SizedBox(
-          //   height: 120.0,
-          //   child: DrawerHeader(
-          //     decoration: BoxDecoration(
-          //       border: Border(
-          //           bottom: BorderSide(
-          //         color: theme.primaryColor,
-          //         width: 2.0,
-          //       )),
-          //       color: theme.highlightColor,
-          //     ),
-          //     child: SvgPicture.asset('assets/images/onboarding/ekde_logo.svg'),
-          //   ),
-          // ),
+          SizedBox(
+            height: 120.0,
+            child: DrawerHeader(
+              decoration: BoxDecoration(
+                border: Border(
+                    bottom: BorderSide(
+                  color: theme.primaryColor,
+                  width: 2.0,
+                )),
+                color: theme.highlightColor,
+              ),
+              child: SvgPicture.asset('assets/images/misc/icon.svg'),
+            ),
+          ),
           Padding(
             padding: EdgeInsets.only(right: layoutProperties.edgeInsets),
             child: ListTile(
