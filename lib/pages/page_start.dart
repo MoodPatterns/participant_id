@@ -54,6 +54,7 @@ class _PageStartState extends State<PageStart> {
         body: Padding(
           padding: EdgeInsets.all(layoutProperties.edgeInsets),
           child: PageBody(
+            constraints: BoxConstraints(maxWidth: layoutProperties.maxWidth),
             controller: scrollController,
             child: SingleChildScrollView(
               controller: scrollController,
