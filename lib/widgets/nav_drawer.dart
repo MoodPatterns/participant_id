@@ -4,22 +4,18 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter_svg/svg.dart';
 import '../utils/helper_functions/string_utils.dart';
 import 'package:flutter/material.dart';
-//import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart' hide Trans;
 import 'package:easy_localization/easy_localization.dart';
-import 'package:hive/hive.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:participant_id/pages/page_start.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:yaml/yaml.dart';
 
-import '../../utils/const/hive_keys.dart';
+
 import '../enums/nav_drawer_enum.dart';
 import '../utils/const/app_data.dart';
 
 class NavDrawer extends StatelessWidget {
   final NavDrawerEnum selected;
-  static final _stateBox = Hive.box(HiveKeys.stateFile);
 
   const NavDrawer({Key? key, required this.selected}) : super(key: key);
 
@@ -114,7 +110,7 @@ class NavDrawer extends StatelessWidget {
                   bottomRight: Radius.circular(50),
                 )),
             onTap: () {
-              //todo
+              launchUrl(Uri.parse('privacy_policy_url'.tr()));
             },
           ),
 
