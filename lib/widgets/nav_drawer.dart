@@ -1,7 +1,9 @@
 import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_svg/svg.dart';
+import '../pages/page_theme.dart';
 import '../utils/helper_functions/string_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Trans;
@@ -63,7 +65,8 @@ class NavDrawer extends StatelessWidget {
               onTap: () {
                 selected == NavDrawerEnum.home
                     ? Get.back()
-                    : Get.offAll(const PageStart(), transition: Transition.rightToLeftWithFade);
+                    : Get.offAll(const PageStart(), transition: Transition.fadeIn);
+                Get.back();
 
               },
             ),
@@ -81,10 +84,10 @@ class NavDrawer extends StatelessWidget {
               selected: selected == NavDrawerEnum.theme,
               selectedTileColor: Theme.of(context).focusColor,
               onTap: () {
-                // selected == NavDrawerEnum.theme
-                //     ? Get.back()
-                //     : Get.to(() => const PageTheme(),
-                //         transition: Transition.rightToLeftWithFade);
+                selected == NavDrawerEnum.theme
+                    ? Get.back()
+                    : Get.to(() => const PageTheme(),
+                        transition: Transition.fadeIn);
               },
             ),
           ),
@@ -150,8 +153,11 @@ class NavDrawer extends StatelessWidget {
     var body = "device_info".tr();
 
 
-
-    if (Platform.isIOS) {
+    if(kIsWeb){
+      var browserInfo = await deviceInfo.webBrowserInfo;
+      body =
+      "$body: ${browserInfo.platform} ${browserInfo.browserName} ${browserInfo.language}";
+    } else if (Platform.isIOS) {
       IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
       body =
           "$body: ${iosInfo.model} ${iosInfo.systemName} ${iosInfo.systemVersion}";
@@ -159,10 +165,6 @@ class NavDrawer extends StatelessWidget {
       AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
       body =
           "$body: ${androidInfo.device} Android ${androidInfo.version.release}";
-    } else {
-      var browserInfo = await deviceInfo.webBrowserInfo;
-      body =
-      "$body: ${browserInfo.platform} ${browserInfo.browserName} ${browserInfo.language}";
     }
 
     body = "$body v${packageInfo.version}/b${packageInfo.buildNumber} ";
