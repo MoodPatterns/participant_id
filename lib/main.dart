@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get_it/get_it.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:participant_id/pages/page_start.dart';
 import 'package:participant_id/utils/const/app_color.dart';
 import 'package:participant_id/utils/const/app_data.dart';
@@ -30,6 +31,9 @@ void main() async {
   GetIt.I.registerSingleton<ThemeController>(ThemeController(themeService));
 
   await GetIt.I<ThemeController>().loadAll();
+
+  GetIt.I.registerSingleton<PackageInfo>(await PackageInfo.fromPlatform());
+
 
   runApp(EasyLocalization(
     supportedLocales: const [

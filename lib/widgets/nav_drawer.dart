@@ -3,12 +3,14 @@ import 'dart:io';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get_it/get_it.dart';
+import 'package:package_info_plus/package_info_plus.dart';
+import '../pages/page_about.dart';
 import '../pages/page_theme.dart';
 import '../utils/helper_functions/string_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Trans;
 import 'package:easy_localization/easy_localization.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 import 'package:participant_id/pages/page_start.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -101,7 +103,10 @@ class NavDrawer extends StatelessWidget {
               bottomRight: Radius.circular(50),
             )),
             onTap: () {
-              //todo
+              selected == NavDrawerEnum.about
+                  ? Get.back()
+                  : Get.to(() => const PageAbout(),
+                  transition: Transition.fadeIn);
             },
           ),
           ListTile(
@@ -149,7 +154,6 @@ class NavDrawer extends StatelessWidget {
 
   Future<void> contactSupport() async {
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
-    PackageInfo packageInfo = await PackageInfo.fromPlatform();
     var body = "device_info".tr();
 
 
@@ -167,7 +171,7 @@ class NavDrawer extends StatelessWidget {
           "$body: ${androidInfo.device} Android ${androidInfo.version.release}";
     }
 
-    body = "$body v${packageInfo.version}/b${packageInfo.buildNumber} ";
+    body = "$body v${GetIt.I<PackageInfo>().version}/b${GetIt.I<PackageInfo>().buildNumber} ";
 
     final Uri emailLaunchUri = Uri(
       scheme: 'mailto',
