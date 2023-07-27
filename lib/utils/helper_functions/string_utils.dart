@@ -21,9 +21,4 @@ class StringUtils {
     RegExp regExp = RegExp(r"^\s*$");
     return regExp.hasMatch(s);
   }
-
-  static String replaceSpecialChars(String s){
-    return s.replaceAll(RegExp(r'\W'), '_');
-  }
-
 }
