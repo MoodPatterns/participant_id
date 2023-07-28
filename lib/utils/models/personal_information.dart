@@ -11,6 +11,7 @@ import 'package:participant_id/utils/models/participant_id.dart';
 class PersonalInformation {
   String? firstWord;
   String? callName;
+  int? birthMonth;
   int? ageKiss;
   LongFinger? longFinger;
   DominantHand? dominantHand;
@@ -19,6 +20,7 @@ class PersonalInformation {
     return (
         '${removeDiacritics(firstWord ?? '').removeAllWhitespace().replaceSpecialChars()}'
         '${removeDiacritics(callName ?? '').removeAllWhitespace().replaceSpecialChars()}'
+        '$birthMonth'
         '$ageKiss'
         '$longFinger'
         '$dominantHand'
@@ -32,7 +34,7 @@ class PersonalInformation {
   }
 
   Future<String> _getMnemonic(Digest digest) async{
-    String mnemonic = await entropyToMnemonic('$digest');
+    String mnemonic = entropyToMnemonic('$digest');
     
     return(mnemonic);
   }
