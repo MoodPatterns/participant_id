@@ -21,18 +21,16 @@ class BottomButton extends StatelessWidget {
       child: Row(
         children: [
           const Spacer(),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                foregroundColor: isActive ? theme.primaryColor : Colors.grey,
-            ),
-            onPressed: isActive ? onPressed : (){
-              Get.snackbar('input_missing'.tr(), 'input_data'.tr());
-            },
-            child: Padding(
-              padding: EdgeInsets.all(layoutProperties.edgeInsets/2),
-              child: Text(
-                text,
-                textScaleFactor: layoutProperties.textScalingFactor,
+          Tooltip(
+            message: isActive ? '' : 'input_missing'.tr(),
+            child: ElevatedButton(
+              onPressed: isActive ? onPressed : (){},
+              child: Padding(
+                padding: EdgeInsets.all(layoutProperties.edgeInsets/2),
+                child: Text(
+                  text,
+                  textScaleFactor: layoutProperties.textScalingFactor,
+                ),
               ),
             ),
           ),

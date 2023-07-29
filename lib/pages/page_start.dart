@@ -59,9 +59,11 @@ class _PageStartState extends State<PageStart> {
           onPressed: () {
             Get.to(() => PageGetFirstWord(pi: PersonalInformation()));
           },
-          text: 'create_participant_id'.tr(), isActive: true, theme: theme, layoutProperties: layoutProperties,
+          text: 'create_participant_id'.tr().toUpperCase(),
+          isActive: true,
+          theme: theme,
+          layoutProperties: layoutProperties,
         ),
-
         body: Padding(
           padding: EdgeInsets.all(layoutProperties.edgeInsets),
           child: PageBody(

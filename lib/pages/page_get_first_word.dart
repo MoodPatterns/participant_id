@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:participant_id/utils/models/personal_information.dart';
+import 'package:participant_id/widgets/bottom_button.dart';
 
 import '../utils/const/app_data.dart';
 import '../widgets/page_body.dart';
@@ -40,19 +41,13 @@ class _PageGetFirstWordState extends State<PageGetFirstWord> {
         title:
             const Text('question_x_of_y').tr(namedArgs: {'x': '1', 'y': '6'}),
       ),
-      bottomNavigationBar: OutlinedButton(
-        onPressed: () {
-          pi.firstWord == null || pi.firstWord == ""
-              ? null
-              : {
-                  // todo
-                };
-        },
-        child: Text(
-          'next',
-          textScaleFactor: layoutProperties.textScalingFactor,
-        ).tr(),
-      ),
+        bottomNavigationBar: BottomButton(
+          onPressed:() {},
+          text: 'next'.tr().toUpperCase(),
+          isActive: !(pi.firstWord == null || pi.firstWord == ""),
+          theme: theme,
+          layoutProperties: layoutProperties,
+        ),
       body: Padding(
         padding: EdgeInsets.all(layoutProperties.edgeInsets),
         child: PageBody(
@@ -70,15 +65,20 @@ class _PageGetFirstWordState extends State<PageGetFirstWord> {
                   textScaleFactor: layoutProperties.textScalingFactor,
                   textAlign: TextAlign.center,
                 ).tr(),
+                SizedBox(height: layoutProperties.edgeInsets,),
                 Card(
-                  color: theme.colorScheme.secondary,
-                  child: Text(
-                    'first_word_explanation',
-                    style: theme.textTheme.labelMedium,
-                    textScaleFactor: layoutProperties.textScalingFactor,
-                    textAlign: TextAlign.center,
-                  ).tr(),
+                  color: theme.colorScheme.tertiary,
+                  child: Padding(
+                    padding: EdgeInsets.all(layoutProperties.edgeInsets),
+                    child: Text(
+                      'first_word_explanation',
+                      style: theme.textTheme.labelMedium!.copyWith(color: theme.colorScheme.onTertiary),
+                      textScaleFactor: layoutProperties.textScalingFactor,
+                      textAlign: TextAlign.center,
+                    ).tr(),
+                  ),
                 ),
+                SizedBox(height: layoutProperties.edgeInsets*2,),
                 MediaQuery(
                   data: mq.copyWith(
                     textScaleFactor: layoutProperties.textScalingFactor,
