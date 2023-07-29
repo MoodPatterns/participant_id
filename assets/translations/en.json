@@ -12,6 +12,8 @@
   "first_word_hint": "e.g., dog",
   "first_word_label": "Your first word was:",
   "home": "Home",
+  "input_data": "Please answer question",
+  "input_missing": "Input missing",
   "its_":  "It is:",
   "library_licenses": "Licenses",
   "link_to_repository": "Link to the repository",

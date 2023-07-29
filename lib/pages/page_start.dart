@@ -4,13 +4,17 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_remix/flutter_remix.dart';
+import 'package:get/get.dart' hide Trans;
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:participant_id/pages/page_get_first_word.dart';
 import 'package:participant_id/utils/const/app_data.dart';
+import 'package:participant_id/utils/models/personal_information.dart';
 import 'package:participant_id/widgets/details_card.dart';
 import 'package:participant_id/widgets/page_body.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../enums/nav_drawer_enum.dart';
+import '../widgets/bottom_button.dart';
 import '../widgets/nav_drawer.dart';
 
 // the only reason it needs to be stateful is to show navdrawer  opening
@@ -42,15 +46,22 @@ class _PageStartState extends State<PageStart> {
         appBar: AppBar(
           leading: Builder(
             builder: (context) => // Ensure Scaffold is in context
-            IconButton(
-                icon: const Icon(Icons.menu),
-                onPressed: () => Scaffold.of(context).openDrawer()),
+                IconButton(
+                    icon: const Icon(Icons.menu),
+                    onPressed: () => Scaffold.of(context).openDrawer()),
           ),
           title: const Text("app_name").tr(),
         ),
         drawer: const NavDrawer(
           selected: NavDrawerEnum.home,
         ),
+        bottomNavigationBar: BottomButton(
+          onPressed: () {
+            Get.to(() => PageGetFirstWord(pi: PersonalInformation()));
+          },
+          text: 'create_participant_id'.tr(), isActive: true, theme: theme, layoutProperties: layoutProperties,
+        ),
+
         body: Padding(
           padding: EdgeInsets.all(layoutProperties.edgeInsets),
           child: PageBody(
@@ -63,7 +74,10 @@ class _PageStartState extends State<PageStart> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.to(
+                            () => PageGetFirstWord(pi: PersonalInformation()));
+                      },
                       child: Text(
                         'create_participant_id',
                         style: theme.textTheme.displaySmall,
