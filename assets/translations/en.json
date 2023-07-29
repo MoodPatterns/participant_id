@@ -25,6 +25,7 @@
   "question_x_of_y": "Question {x} of {y}",
   "secure": "secure",
   "short_description": "Converts things only you know into a reproducible but irreversible participant ID.",
+  "source_code": "Source code",
   "support": "Help",
   "theme": "Theme",
   "version_build_": "Version: {v} (Build: {b})"
