@@ -60,7 +60,7 @@ class _PageGetCallNameState extends State<PageGetCallName> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  'first_word_question',
+                  'call_name_question',
                   style: theme.textTheme.titleLarge,
                   textScaleFactor: layoutProperties.textScalingFactor,
                   textAlign: TextAlign.center,
@@ -71,7 +71,7 @@ class _PageGetCallNameState extends State<PageGetCallName> {
                   child: Padding(
                     padding: EdgeInsets.all(layoutProperties.edgeInsets),
                     child: Text(
-                      'first_word_explanation',
+                      'call_name_explanation',
                       style: theme.textTheme.labelMedium!.copyWith(color: theme.colorScheme.onTertiary),
                       textScaleFactor: layoutProperties.textScalingFactor,
                       textAlign: TextAlign.center,
@@ -88,8 +88,8 @@ class _PageGetCallNameState extends State<PageGetCallName> {
                     autofocus: true,
                     decoration: InputDecoration(
                       icon: Icon(MdiIcons.commentAccountOutline),
-                      hintText: 'first_word_hint'.tr(),
-                      labelText: 'first_word_label'.tr(),
+                      hintText: 'call_name_hint'.tr(),
+                      labelText: 'call_name_label'.tr(),
                     ),
                     onChanged: (String? value) {
                       setState(() {
