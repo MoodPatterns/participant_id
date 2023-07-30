@@ -11,37 +11,37 @@ import 'package:participant_id/utils/models/participant_id.dart';
 class PersonalInformation {
   String? firstWord;
   String? callName;
-  int? birthMonth;
+  DateTime? birthDay;
   int? ageKiss;
   LongFinger? longFinger;
   DominantHand? dominantHand;
 
   String _concatAll() {
-    return (
-        '${removeDiacritics(firstWord ?? '').removeAllWhitespace().replaceSpecialChars()}'
+    return ('${removeDiacritics(firstWord ?? '').removeAllWhitespace().replaceSpecialChars()}'
         '${removeDiacritics(callName ?? '').removeAllWhitespace().replaceSpecialChars()}'
-        '$birthMonth'
+        '${birthDay?.year ?? '0'}'
+        '${birthDay?.month ?? '0'}'
+        '${birthDay?.day ?? '0'}'
         '$ageKiss'
         '$longFinger'
-        '$dominantHand'
-    );
+        '$dominantHand');
   }
 
-  Digest _getHash(){
+  Digest _getHash() {
     var bytes = utf8.encode(_concatAll());
 
     return (md5.convert(bytes));
   }
 
-  Future<String> _getMnemonic(Digest digest) async{
+  Future<String> _getMnemonic(Digest digest) async {
     String mnemonic = entropyToMnemonic('$digest');
-    
-    return(mnemonic);
+
+    return (mnemonic);
   }
-  
-  Future<ParticipantId> getParticipantId() async{
+
+  Future<ParticipantId> getParticipantId() async {
     var hash = _getHash();
-    
+
     return (ParticipantId(id: '$hash', mnemonic: await _getMnemonic(hash)));
   }
 }
