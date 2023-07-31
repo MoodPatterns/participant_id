@@ -5,7 +5,7 @@
   "app_name": "Participant Id",
   "birthday_explanation": "If you cannot answer this question, please select January 1st of the most likely birth year.",
   "birthday_question": "Please enter your birthday.",
-  "call_name_question": "How did your parents or your legal guardian call you when you were  6 years old?",
+  "call_name_question": "How did your parents or your legal guardian call you when you were 6 years old?",
   "call_name_explanation": "If you cannot answer this question, please enter an \"X\".",
   "call_name_hint": "e.g., Junior",
   "call_name_label": "I was called:",
