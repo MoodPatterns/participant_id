@@ -3,6 +3,8 @@
   "anonymous": "anonymous",
   "anonymous_explanation": "To guarantee privacy, no data is stored or sent over the internet. \n\nThis app converts your data into a participant Id without any of it leaving your device. Nobody but you will ever find out what you have entered.\n\nYou can even turn off your internet access while using the app to be extra safe.",
   "app_name": "Participant Id",
+  "birthday_explanation": "If you cannot answer this question, please select January 1st of the most likely birth year.",
+  "birthday_question": "Please enter your birthday.",
   "call_name_question": "How did your parents or your legal guardian call you when you were  6 years old?",
   "call_name_explanation": "If you cannot answer this question, please enter an \"X\".",
   "call_name_hint": "e.g., Junior",

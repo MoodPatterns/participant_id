@@ -1,4 +1,6 @@
+import 'package:date_picker_plus/date_picker_plus.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Trans;
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -45,10 +47,10 @@ class _PageGetBirthdayState extends State<PageGetBirthday> {
       ),
         bottomNavigationBar: BottomButton(
           onPressed:() {
-            Get.to(() => PageGetCallName(pi: pi), transition: Transition.noTransition);
+            //Get.to(() => PageGetCallName(pi: pi), transition: Transition.noTransition);
           },
           text: 'next'.tr().toUpperCase(),
-          isActive: true,
+          isActive: !(pi.birthDay == null),
           theme: theme,
           layoutProperties: layoutProperties,
         ),
@@ -64,7 +66,7 @@ class _PageGetBirthdayState extends State<PageGetBirthday> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  'first_word_question',
+                  'birthday_question',
                   style: theme.textTheme.titleLarge,
                   textScaleFactor: layoutProperties.textScalingFactor,
                   textAlign: TextAlign.center,
@@ -75,7 +77,7 @@ class _PageGetBirthdayState extends State<PageGetBirthday> {
                   child: Padding(
                     padding: EdgeInsets.all(layoutProperties.edgeInsets),
                     child: Text(
-                      'first_word_explanation',
+                      'birthday_explanation',
                       style: theme.textTheme.labelMedium!.copyWith(color: theme.colorScheme.onTertiary),
                       textScaleFactor: layoutProperties.textScalingFactor,
                       textAlign: TextAlign.center,
@@ -87,17 +89,15 @@ class _PageGetBirthdayState extends State<PageGetBirthday> {
                   data: mq.copyWith(
                     textScaleFactor: layoutProperties.textScalingFactor,
                   ),
-                  child: TextFormField(
-                    initialValue: pi.firstWord,
-                    autofocus: true,
-                    decoration: InputDecoration(
-                      icon: Icon(MdiIcons.accountVoice),
-                      hintText: 'first_word_hint'.tr(),
-                      labelText: 'first_word_label'.tr(),
-                    ),
-                    onChanged: (String? value) {
+                  child: DatePicker(
+                    initialDate: pi.birthDay ?? DateTime(2000, 1, 1),
+                    initialPickerType: PickerType.years,
+                    minDate: DateTime(1900, 1, 1),
+                    maxDate: DateTime.now(),
+                    slidersSize: 24 * layoutProperties.textScalingFactor,
+                    onDateChanged: (value) {
                       setState(() {
-                        pi.firstWord = value;
+                        pi.birthDay = value;
                       });
                     },
                   ),

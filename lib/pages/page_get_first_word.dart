@@ -43,15 +43,16 @@ class _PageGetFirstWordState extends State<PageGetFirstWord> {
         title:
             const Text('question_x_of_y').tr(namedArgs: {'x': '1', 'y': '6'}),
       ),
-        bottomNavigationBar: BottomButton(
-          onPressed:() {
-            Get.to(() => PageGetCallName(pi: pi), transition: Transition.noTransition);
-          },
-          text: 'next'.tr().toUpperCase(),
-          isActive: !(pi.firstWord == null || pi.firstWord == ""),
-          theme: theme,
-          layoutProperties: layoutProperties,
-        ),
+      bottomNavigationBar: BottomButton(
+        onPressed: () {
+          Get.to(() => PageGetCallName(pi: pi),
+              transition: Transition.noTransition);
+        },
+        text: 'next'.tr().toUpperCase(),
+        isActive: !(pi.firstWord == null || pi.firstWord == ""),
+        theme: theme,
+        layoutProperties: layoutProperties,
+      ),
       body: Padding(
         padding: EdgeInsets.all(layoutProperties.edgeInsets),
         child: PageBody(
@@ -69,20 +70,25 @@ class _PageGetFirstWordState extends State<PageGetFirstWord> {
                   textScaleFactor: layoutProperties.textScalingFactor,
                   textAlign: TextAlign.center,
                 ).tr(),
-                SizedBox(height: layoutProperties.edgeInsets,),
+                SizedBox(
+                  height: layoutProperties.edgeInsets,
+                ),
                 Card(
                   color: theme.colorScheme.tertiary,
                   child: Padding(
                     padding: EdgeInsets.all(layoutProperties.edgeInsets),
                     child: Text(
                       'first_word_explanation',
-                      style: theme.textTheme.labelMedium!.copyWith(color: theme.colorScheme.onTertiary),
+                      style: theme.textTheme.labelMedium!
+                          .copyWith(color: theme.colorScheme.onTertiary),
                       textScaleFactor: layoutProperties.textScalingFactor,
                       textAlign: TextAlign.center,
                     ).tr(),
                   ),
                 ),
-                SizedBox(height: layoutProperties.edgeInsets*2,),
+                SizedBox(
+                  height: layoutProperties.edgeInsets * 2,
+                ),
                 MediaQuery(
                   data: mq.copyWith(
                     textScaleFactor: layoutProperties.textScalingFactor,
@@ -99,6 +105,12 @@ class _PageGetFirstWordState extends State<PageGetFirstWord> {
                       setState(() {
                         pi.firstWord = value;
                       });
+                    },
+                    onFieldSubmitted: (String? s) {
+                      if (!(pi.firstWord == null || pi.firstWord == "")) {
+                        Get.to(() => PageGetCallName(pi: pi),
+                            transition: Transition.noTransition);
+                      }
                     },
                   ),
                 )

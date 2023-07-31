@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart' hide Trans;
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:participant_id/pages/page_get_birthday.dart';
 import 'package:participant_id/utils/models/personal_information.dart';
 import 'package:participant_id/widgets/bottom_button.dart';
 
@@ -42,7 +44,7 @@ class _PageGetCallNameState extends State<PageGetCallName> {
             const Text('question_x_of_y').tr(namedArgs: {'x': '2', 'y': '6'}),
       ),
         bottomNavigationBar: BottomButton(
-          onPressed:() {},
+          onPressed:() {Get.to(() => PageGetBirthday(pi: pi), transition: Transition.noTransition);},
           text: 'next'.tr().toUpperCase(),
           isActive: !(pi.callName == null || pi.callName == ""),
           theme: theme,
@@ -95,6 +97,12 @@ class _PageGetCallNameState extends State<PageGetCallName> {
                       setState(() {
                         pi.callName = value;
                       });
+                    },
+                    onFieldSubmitted: (String? s) {
+                      if (!(pi.callName == null || pi.callName == "")) {
+                        Get.to(() => PageGetCallName(pi: pi),
+                            transition: Transition.noTransition);
+                      }
                     },
                   ),
                 )
