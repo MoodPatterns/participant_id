@@ -12,7 +12,7 @@ class PersonalInformation {
   String? firstWord;
   String? callName;
   DateTime? birthDay;
-  int? ageKiss;
+  int? olderSiblings;
   LongFinger? longFinger;
   DominantHand? dominantHand;
 
@@ -22,7 +22,7 @@ class PersonalInformation {
         '${birthDay?.year ?? '0'}'
         '${birthDay?.month ?? '0'}'
         '${birthDay?.day ?? '0'}'
-        '$ageKiss'
+        '$olderSiblings'
         '$longFinger'
         '$dominantHand');
   }
@@ -33,7 +33,7 @@ class PersonalInformation {
     return (md5.convert(bytes));
   }
 
-  Future<String> _getMnemonic(Digest digest) async {
+  static Future<String> _getMnemonic(Digest digest) async {
     String mnemonic = entropyToMnemonic('$digest');
 
     return (mnemonic);

@@ -100,7 +100,7 @@ class _PageGetCallNameState extends State<PageGetCallName> {
                     },
                     onFieldSubmitted: (String? s) {
                       if (!(pi.callName == null || pi.callName == "")) {
-                        Get.to(() => PageGetCallName(pi: pi),
+                        Get.to(() => PageGetBirthday(pi: pi),
                             transition: Transition.noTransition);
                       }
                     },

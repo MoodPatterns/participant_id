@@ -1,32 +1,34 @@
-import 'package:date_picker_plus/date_picker_plus.dart';
+import 'package:chips_choice/chips_choice.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Trans;
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:participant_id/pages/page_get_call_name.dart';
-import 'package:participant_id/pages/page_get_older_siblings.dart';
+import 'package:participant_id/pages/page_get_birthday.dart';
 import 'package:participant_id/utils/models/personal_information.dart';
 import 'package:participant_id/widgets/bottom_button.dart';
 
 import '../utils/const/app_data.dart';
 import '../widgets/page_body.dart';
 
-class PageGetBirthday extends StatefulWidget {
+class PageGetOlderSiblings extends StatefulWidget {
   final PersonalInformation pi;
 
-  const PageGetBirthday({super.key, required this.pi});
+  const PageGetOlderSiblings({super.key, required this.pi});
 
   @override
-  State<PageGetBirthday> createState() => _PageGetBirthdayState();
+  State<PageGetOlderSiblings> createState() => _PageGetOlderSiblingsState();
 }
 
-class _PageGetBirthdayState extends State<PageGetBirthday> {
+class _PageGetOlderSiblingsState extends State<PageGetOlderSiblings> {
   late PersonalInformation pi;
+  late List<String> options;
 
   @override
   void initState() {
     pi = widget.pi;
+
+    options = [for(var i=0; i<10; i+=1) i.toString()];
+    options.add('more'.tr());
 
     super.initState();
   }
@@ -44,14 +46,15 @@ class _PageGetBirthdayState extends State<PageGetBirthday> {
     return Scaffold(
       appBar: AppBar(
         title:
-            const Text('question_x_of_y').tr(namedArgs: {'x': '3', 'y': '6'}),
+            const Text('question_x_of_y').tr(namedArgs: {'x': '4', 'y': '6'}),
       ),
         bottomNavigationBar: BottomButton(
           onPressed:() {
-            Get.to(() => PageGetOlderSiblings(pi: pi), transition: Transition.noTransition);
-          },
+            // todo: adjust
+            //Get.to(() => PageGetBirthday(pi: pi), transition: Transition.noTransition);
+            },
           text: 'next'.tr().toUpperCase(),
-          isActive: !(pi.birthDay == null),
+          isActive: !(pi.olderSiblings == null),
           theme: theme,
           layoutProperties: layoutProperties,
         ),
@@ -67,7 +70,7 @@ class _PageGetBirthdayState extends State<PageGetBirthday> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  'birthday_question',
+                  'older_siblings_question',
                   style: theme.textTheme.titleLarge,
                   textScaleFactor: layoutProperties.textScalingFactor,
                   textAlign: TextAlign.center,
@@ -78,7 +81,7 @@ class _PageGetBirthdayState extends State<PageGetBirthday> {
                   child: Padding(
                     padding: EdgeInsets.all(layoutProperties.edgeInsets),
                     child: Text(
-                      'birthday_explanation',
+                      'older_siblings_explanation',
                       style: theme.textTheme.labelMedium!.copyWith(color: theme.colorScheme.onTertiary),
                       textScaleFactor: layoutProperties.textScalingFactor,
                       textAlign: TextAlign.center,
@@ -90,17 +93,22 @@ class _PageGetBirthdayState extends State<PageGetBirthday> {
                   data: mq.copyWith(
                     textScaleFactor: layoutProperties.textScalingFactor,
                   ),
-                  child: DatePicker(
-                    initialDate: pi.birthDay ?? DateTime(2000, 1, 1),
-                    initialPickerType: PickerType.years,
-                    minDate: DateTime(1900, 1, 1),
-                    maxDate: DateTime.now(),
-                    slidersSize: 24 * layoutProperties.textScalingFactor,
-                    onDateChanged: (value) {
-                      setState(() {
-                        pi.birthDay = value;
-                      });
-                    },
+                  child: ChipsChoice<int>.single(
+                    wrapped: true,
+                    wrapCrossAlignment: WrapCrossAlignment.center,
+                    alignment: WrapAlignment.center,
+                    runAlignment: WrapAlignment.center,
+                    spacing: layoutProperties.edgeInsets,
+                    runSpacing: layoutProperties.edgeInsets,
+                    choiceCheckmark: true,
+                    choiceStyle: C2ChipStyle.filled(height: 32*layoutProperties.textScalingFactor, padding: EdgeInsets.all(layoutProperties.edgeInsets/2)),
+                    value: pi.olderSiblings,
+                    onChanged: (val) => setState(() => pi.olderSiblings = val),
+                    choiceItems: C2Choice.listFrom<int, String>(
+                      source: options,
+                      value: (i, v) => i,
+                      label: (i, v) => v,
+                    ),
                   ),
                 )
               ],
