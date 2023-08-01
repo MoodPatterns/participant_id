@@ -5,5 +5,5 @@ extension StringExtension on String {
 
   String removeAllWhitespace() => replaceAll(RegExp(r"\s+"), "");
 
-  String replaceSpecialChars() => replaceAll(RegExp(r'\W'), '_');
+  String replaceSpecialChars() => replaceAll(RegExp(r'[^\p{L}]', unicode: true), '_');
 }
