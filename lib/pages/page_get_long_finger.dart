@@ -8,16 +8,16 @@ import 'package:participant_id/widgets/bottom_button.dart';
 import '../utils/const/app_data.dart';
 import '../widgets/page_body.dart';
 
-class PageGetOlderSiblings extends StatefulWidget {
+class PageGetLongFinger extends StatefulWidget {
   final PersonalInformation pi;
 
-  const PageGetOlderSiblings({super.key, required this.pi});
+  const PageGetLongFinger({super.key, required this.pi});
 
   @override
-  State<PageGetOlderSiblings> createState() => _PageGetOlderSiblingsState();
+  State<PageGetLongFinger> createState() => _PageGetLongFingerState();
 }
 
-class _PageGetOlderSiblingsState extends State<PageGetOlderSiblings> {
+class _PageGetLongFingerState extends State<PageGetLongFinger> {
   late PersonalInformation pi;
   late List<String> options;
 
@@ -44,7 +44,7 @@ class _PageGetOlderSiblingsState extends State<PageGetOlderSiblings> {
     return Scaffold(
       appBar: AppBar(
         title:
-            const Text('question_x_of_y').tr(namedArgs: {'x': '4', 'y': '6'}),
+            const Text('question_x_of_y').tr(namedArgs: {'x': '5', 'y': '6'}),
       ),
         bottomNavigationBar: BottomButton(
           onPressed:() {
@@ -68,7 +68,7 @@ class _PageGetOlderSiblingsState extends State<PageGetOlderSiblings> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  'older_siblings_question',
+                  'long_finger_question',
                   style: theme.textTheme.titleLarge,
                   textScaleFactor: layoutProperties.textScalingFactor,
                   textAlign: TextAlign.center,
@@ -79,7 +79,7 @@ class _PageGetOlderSiblingsState extends State<PageGetOlderSiblings> {
                   child: Padding(
                     padding: EdgeInsets.all(layoutProperties.edgeInsets),
                     child: Text(
-                      'older_siblings_explanation',
+                      'long_finger_explanation',
                       style: theme.textTheme.labelMedium!.copyWith(color: theme.colorScheme.onTertiary),
                       textScaleFactor: layoutProperties.textScalingFactor,
                       textAlign: TextAlign.center,
@@ -92,12 +92,7 @@ class _PageGetOlderSiblingsState extends State<PageGetOlderSiblings> {
                     textScaleFactor: layoutProperties.textScalingFactor,
                   ),
                   child: ChipsChoice<int>.single(
-                    wrapped: true,
-                    wrapCrossAlignment: WrapCrossAlignment.center,
-                    alignment: WrapAlignment.center,
-                    runAlignment: WrapAlignment.center,
-                    spacing: layoutProperties.edgeInsets,
-                    runSpacing: layoutProperties.edgeInsets,
+                    wrapped: false,
                     choiceCheckmark: true,
                     choiceStyle: C2ChipStyle.filled(height: 32*layoutProperties.textScalingFactor, padding: EdgeInsets.all(layoutProperties.edgeInsets/2)),
                     value: pi.olderSiblings,
@@ -106,7 +101,19 @@ class _PageGetOlderSiblingsState extends State<PageGetOlderSiblings> {
                       source: options,
                       value: (i, v) => i,
                       label: (i, v) => v,
+
                     ),
+
+                      choiceBuilder: (item, i) {
+    return CustomChip(
+    label: item.label,
+    width: double.infinity,
+    height: 90,
+    color: Colors.redAccent,
+    margin: const EdgeInsets.fromLTRB(0, 5, 0, 5),
+    selected: item.selected,
+    onSelect: item.select!,
+    );
                   ),
                 )
               ],

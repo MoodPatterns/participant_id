@@ -22,6 +22,8 @@
   "its_":  "It is:",
   "library_licenses": "Licenses",
   "link_to_repository": "Link to the repository",
+  "long_finger_explanation": "Which finger on your left hand is longer:\nThe ring finger or the index finger?",
+  "long_finger_question": "If you cannot answer this question, please select \"{}\".",
   "md5_explanation": "To safeguard your data, we employ the industry-standard encryption method MD5. MD5 is a widely used cryptographic hash function that converts your information into a unique alphanumeric string. It ensures that your data remains confidential and tamper-proof.\n\nIt's important to note that once your information is encrypted, the resulting hash is irreversible. This means that the original data cannot be derived from the hash. There is no way to reverse-engineer the original data from the hash.",
   "more": "more",
   "next": "next",
