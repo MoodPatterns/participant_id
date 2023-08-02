@@ -4,36 +4,37 @@ import 'package:chips_choice/chips_choice.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Trans;
+import 'package:participant_id/enums/dominant_hand.dart';
 import 'package:participant_id/enums/long_finger.dart';
+import 'package:participant_id/pages/page_show_id.dart';
 import 'package:participant_id/utils/models/personal_information.dart';
 import 'package:participant_id/widgets/bottom_button.dart';
 
 import '../utils/const/app_data.dart';
 import '../widgets/custom_chip.dart';
 import '../widgets/page_body.dart';
-import 'page_get_dominant_hand.dart';
 
-class PageGetLongFinger extends StatefulWidget {
+class PageGetDominantHand extends StatefulWidget {
   final PersonalInformation pi;
 
-  const PageGetLongFinger({super.key, required this.pi});
+  const PageGetDominantHand({super.key, required this.pi});
 
   @override
-  State<PageGetLongFinger> createState() => _PageGetLongFingerState();
+  State<PageGetDominantHand> createState() => _PageGetDominantHandState();
 }
 
-class _PageGetLongFingerState extends State<PageGetLongFinger> {
+class _PageGetDominantHandState extends State<PageGetDominantHand> {
   late PersonalInformation pi;
-  final List<FingerSelection> options = <FingerSelection>[];
+  final List<HandSelection> options = <HandSelection>[];
 
   @override
   void initState() {
     pi = widget.pi;
 
     options.addAll([
-      FingerSelection('finger_index'.tr(), 'assets/images/misc/longest_index.svg'),
-      FingerSelection('finger_equal'.tr(), 'assets/images/misc/longest_equal.svg'),
-      FingerSelection('finger_ring'.tr(), 'assets/images/misc/longest_ring.svg'),
+      HandSelection('hand_left'.tr(), 'assets/images/misc/hand_left.svg'),
+      HandSelection('hand_both'.tr(), 'assets/images/misc/hand_both.svg'),
+      HandSelection('hand_right'.tr(), 'assets/images/misc/hand_right.svg'),
     ]);
 
     super.initState();
@@ -52,14 +53,14 @@ class _PageGetLongFingerState extends State<PageGetLongFinger> {
     return Scaffold(
       appBar: AppBar(
         title:
-            const Text('question_x_of_y').tr(namedArgs: {'x': '5', 'y': '6'}),
+            const Text('question_x_of_y').tr(namedArgs: {'x': '6', 'y': '6'}),
       ),
       bottomNavigationBar: BottomButton(
         onPressed: () {
-          Get.to(() => PageGetDominantHand(pi: pi), transition: Transition.noTransition);
+          Get.to(() => PageShowId(pi: pi), transition: Transition.noTransition);
         },
-        text: 'next'.tr().toUpperCase(),
-        isActive: !(pi.longFinger == null),
+        text: 'show_id'.tr().toUpperCase(),
+        isActive: !(pi.dominantHand == null),
         theme: theme,
         layoutProperties: layoutProperties,
       ),
@@ -75,7 +76,7 @@ class _PageGetLongFingerState extends State<PageGetLongFinger> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  'long_finger_question',
+                  'dominant_hand_question',
                   style: theme.textTheme.titleLarge,
                   textScaleFactor: layoutProperties.textScalingFactor,
                   textAlign: TextAlign.center,
@@ -88,12 +89,12 @@ class _PageGetLongFingerState extends State<PageGetLongFinger> {
                   child: Padding(
                     padding: EdgeInsets.all(layoutProperties.edgeInsets),
                     child: Text(
-                      'long_finger_explanation',
+                      'dominant_hand_explanation',
                       style: theme.textTheme.labelMedium!
                           .copyWith(color: theme.colorScheme.onTertiary),
                       textScaleFactor: layoutProperties.textScalingFactor,
                       textAlign: TextAlign.center,
-                    ).tr(args: ['finger_equal'.tr()]),
+                    ).tr(args: ['hand_both'.tr()]),
                   ),
                 ),
                 SizedBox(
@@ -108,9 +109,9 @@ class _PageGetLongFingerState extends State<PageGetLongFinger> {
                       height: 32 * layoutProperties.textScalingFactor,
                       padding:
                           EdgeInsets.all(layoutProperties.edgeInsets / 2)),
-                  value: pi.longFinger?.index,
-                  onChanged: (val) => setState(() => pi.longFinger = LongFinger.values[val]),
-                  choiceItems: C2Choice.listFrom<int, FingerSelection>(
+                  value: pi.dominantHand?.index,
+                  onChanged: (val) => setState(() => pi.dominantHand = DominantHand.values[val]),
+                  choiceItems: C2Choice.listFrom<int, HandSelection>(
                     source: options,
                     value: (i, v) => i,
                     label: (i, v) => v.label,
@@ -136,9 +137,9 @@ class _PageGetLongFingerState extends State<PageGetLongFinger> {
   }
 }
 
-class FingerSelection {
+class HandSelection {
   final String label;
   final String assetPath;
 
-  FingerSelection(this.label, this.assetPath);
+  HandSelection(this.label, this.assetPath);
 }
