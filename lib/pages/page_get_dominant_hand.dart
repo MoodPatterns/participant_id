@@ -5,7 +5,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Trans;
 import 'package:participant_id/enums/dominant_hand.dart';
-import 'package:participant_id/enums/long_finger.dart';
 import 'package:participant_id/pages/page_show_id.dart';
 import 'package:participant_id/utils/models/personal_information.dart';
 import 'package:participant_id/widgets/bottom_button.dart';
