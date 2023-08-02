@@ -2,6 +2,7 @@ import 'package:chips_choice/chips_choice.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Trans;
+import 'package:participant_id/pages/page_get_long_finger.dart';
 import 'package:participant_id/utils/models/personal_information.dart';
 import 'package:participant_id/widgets/bottom_button.dart';
 
@@ -48,8 +49,7 @@ class _PageGetOlderSiblingsState extends State<PageGetOlderSiblings> {
       ),
         bottomNavigationBar: BottomButton(
           onPressed:() {
-            // todo: adjust
-            //Get.to(() => PageGetBirthday(pi: pi), transition: Transition.noTransition);
+            Get.to(() => PageGetLongFinger(pi: pi), transition: Transition.noTransition);
             },
           text: 'next'.tr().toUpperCase(),
           isActive: !(pi.olderSiblings == null),

@@ -1,5 +1,5 @@
 enum LongFinger {
-  ringFinger,
   indexFinger,
   equal,
+  ringFinger,
 }

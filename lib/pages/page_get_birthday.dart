@@ -94,7 +94,7 @@ class _PageGetBirthdayState extends State<PageGetBirthday> {
                     initialDate: pi.birthDay ?? DateTime(2000, 1, 1),
                     initialPickerType: PickerType.years,
                     minDate: DateTime(1900, 1, 1),
-                    maxDate: DateTime.now(),
+                    maxDate: DateTime.now().subtract(const Duration(days:365*6)),
                     slidersSize: 24 * layoutProperties.textScalingFactor,
                     onDateChanged: (value) {
                       setState(() {

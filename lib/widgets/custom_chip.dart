@@ -1,29 +1,26 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import '../utils/const/durations.dart';
+import '../utils/models/layout_properties.dart';
 
 class CustomChip extends StatelessWidget {
   final String label;
-  final Color? color;
   final double? width;
-  final double? height;
-  final EdgeInsetsGeometry? margin;
   final bool selected;
   final Function(bool selected) onSelect;
-  final List<String> svgPaths;
+  final String svgPath;
+  final LayoutProperties layoutProperties;
 
   const CustomChip({
     Key? key,
     required this.label,
-    required this.color,
     this.width,
-    this.margin,
     this.selected = false,
     required this.onSelect,
-    this.height,
-    required this.svgPaths,
+    required this.svgPath, required this.layoutProperties,
   }) : super(key: key);
 
   @override
@@ -31,19 +28,17 @@ class CustomChip extends StatelessWidget {
     final theme = Theme.of(context);
 
     return AnimatedContainer(
-      width: width,
-      height: height,
-      margin: margin ?? const EdgeInsets.symmetric(vertical: 15, horizontal: 5),
       duration: Durations.animationNormal,
+      margin: EdgeInsets.all(layoutProperties.edgeInsets),
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
         color: selected
-            ? (color ?? theme.primaryColor.withOpacity(.12))
-            : theme.unselectedWidgetColor.withOpacity(.12),
+            ?  theme.primaryColor
+            : theme.canvasColor,
         borderRadius: BorderRadius.all(Radius.circular(selected ? 25 : 10)),
         border: Border.all(
           color: selected
-              ? (color ?? theme.colorScheme!.secondary.withOpacity(.38))
+              ? theme.colorScheme.secondary.withOpacity(.38)
               : theme.colorScheme.onSurface.withOpacity(.38),
           width: 1,
         ),
@@ -51,43 +46,55 @@ class CustomChip extends StatelessWidget {
       child: InkWell(
         borderRadius: BorderRadius.all(Radius.circular(selected ? 25 : 10)),
         onTap: () => onSelect(!selected),
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              SizedBox(
-                width: width,
-                child: FittedBox(
-                  fit: BoxFit.contain,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: svgPaths
-                        .map((p) =>
-                        AnimatedSwitcher(
-                            duration: Durations.animationNormal,
-                            child: SvgPicture.asset(
-                              p,
-                              key: ValueKey('$p$selected'),
-                              colorFilter: ColorFilter.mode(
-                                selected ? theme.colorScheme.onPrimary : theme
-                                    .colorScheme.primary,
-                                BlendMode.color,
-                              ),
-                            )))
-                        .toList(),
+        child: Padding(
+          padding: EdgeInsets.all(layoutProperties.edgeInsets),
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SizedBox(
+                  width: width,
+                  height: width,
+                  child: FittedBox(
+                    fit: BoxFit.contain,
+                    child: AnimatedSwitcher(
+                      duration: Durations.animationNormal,
+                      child: SvgPicture.asset(
+                        svgPath,
+                        key: ValueKey('$svgPath$selected'),
+                        colorFilter: ColorFilter.mode(
+                          selected
+                              ? theme.colorScheme.onPrimary
+                              : theme.colorScheme.primary,
+                          BlendMode.modulate,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
-              ),
-              AnimatedSwitcher(duration: Durations.animationNormal,
-                  child: Text(label, key: ValueKey('$label$selected'), style: theme.textTheme.labelLarge!.copyWith(
-                    color: selected ? theme.colorScheme.onPrimary : theme
-                        .colorScheme.onSurface
-                  ),)),
-        AnimatedSwitcher(duration: Durations.animationNormal,
-            child: selected ? Icon(MdiIcons.checkBold, color: theme.colorScheme.onPrimary,) : const SizedBox.shrink()),
-            ]
+                AnimatedSwitcher(
+                    duration: Durations.animationNormal,
+                    child: Text(
+                      label,
+                      textScaleFactor: layoutProperties.textScalingFactor,
+                      maxLines: 2,
+                      key: ValueKey('$label$selected'),
+                      style: theme.textTheme.labelLarge!.copyWith(
+                          color: selected
+                              ? theme.colorScheme.onPrimary
+                              : theme.colorScheme.onSurface),
+                    )),
+                AnimatedSwitcher(
+                    duration: Durations.animationNormal,
+                    child: selected
+                        ? Icon(
+                            CupertinoIcons.checkmark_alt,
+                            color: theme.colorScheme.onPrimary,
+                      size: 20*layoutProperties.textScalingFactor
+                          )
+                        : const SizedBox.shrink()),
+              ]),
         ),
 
         // Stack(

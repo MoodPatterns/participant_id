@@ -1,5 +1,5 @@
 enum DominantHand{
   left,
-  right,
-  both
+  both,
+  right
 }
