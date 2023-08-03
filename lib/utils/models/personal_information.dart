@@ -16,19 +16,19 @@ class PersonalInformation {
   LongFinger? longFinger;
   DominantHand? dominantHand;
 
-  String _concatAll() {
+  String concatAll() {
     return ('${removeDiacritics(firstWord ?? '').removeAllWhitespace().replaceSpecialChars()}'
-        '${removeDiacritics(callName ?? '').removeAllWhitespace().replaceSpecialChars()}'
-        '${birthDay?.year ?? '0'}'
-        '${birthDay?.month ?? '0'}'
-        '${birthDay?.day ?? '0'}'
-        '$olderSiblings'
-        '$longFinger'
-        '$dominantHand');
+        '-${removeDiacritics(callName ?? '').removeAllWhitespace().replaceSpecialChars()}'
+        '-${birthDay?.year ?? '0'}'
+        '-${birthDay?.month ?? '0'}'
+        '-${birthDay?.day ?? '0'}'
+        '-$olderSiblings'
+        '-$longFinger'
+        '-$dominantHand');
   }
 
   Digest _getHash() {
-    var bytes = utf8.encode(_concatAll());
+    var bytes = utf8.encode(concatAll());
 
     return (md5.convert(bytes));
   }

@@ -8,8 +8,9 @@ class BottomButton extends StatelessWidget {
   final bool isActive;
   final ThemeData theme;
   final LayoutProperties layoutProperties;
+  final String? message;
 
-  const BottomButton({super.key, required this.onPressed, required this.text, required this.isActive, required this.theme, required this.layoutProperties});
+  const BottomButton({super.key, required this.onPressed, required this.text, required this.isActive, required this.theme, required this.layoutProperties, this.message});
   
 
   @override
@@ -21,7 +22,7 @@ class BottomButton extends StatelessWidget {
         children: [
           const Spacer(),
           Tooltip(
-            message: isActive ? '' : 'input_missing'.tr(),
+            message: isActive ? '' : message ?? 'input_missing'.tr(),
             child: ElevatedButton(
               onPressed: isActive ? onPressed : (){},
               child: Padding(

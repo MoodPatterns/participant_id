@@ -10,6 +10,7 @@
   "call_name_hint": "e.g., Junior",
   "call_name_label": "I was called:",
   "contact": "Contact",
+  "copied_to_clipboard": "Copied to clipboard",
   "create_participant_id": "Create a participant\u00a0ID",
   "device_info": "Device info",
   "dominant_hand_explanation": "If you cannot answer this question, please select \"{}\".",
@@ -18,6 +19,7 @@
   "finger_equal": "equal",
   "finger_index": "index finger",
   "finger_ring": "ring finger",
+  "finish": "finish",
   "first_word_question": "What was your first word as a child?",
   "first_word_explanation": "If you cannot answer this question, please enter an \"X\".",
   "first_word_hint": "e.g., dog",
@@ -39,6 +41,7 @@
   "older_siblings_question": "How many OLDER siblings do/did you have?",
   "open_source": "open source",
   "open_source_explanation": "This app is fully open-source, and the entire codebase is available for public scrutiny on GitHub!\n\nThis means you have the freedom to review, inspect, and verify the code yourself to gain confidence in its security and reliability.\n\n",
+  "please_wait": "Please wait.",
   "privacy_policy": "Privacy Policy",
   "privacy_policy_url": "https://moodpatterns.info/participantId/privacy/en.html",
   "question_x_of_y": "Question {x} of {y}",
@@ -50,5 +53,8 @@
   "source_code": "Source code",
   "support": "Help",
   "theme": "Theme",
-  "version_build_": "Version: {v} (Build: {b})"
+  "version_build_": "Version: {v} (Build: {b})",
+  "your_qr_": "Id as QR-code:",
+  "your_mnemonic_": "Id as BIP39 Mnemonic:",
+  "your_participant_id_": "Your Participant Id:"
 }
