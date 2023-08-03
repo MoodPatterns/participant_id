@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart' hide Trans;
 import 'package:participant_id/utils/models/layout_properties.dart';
 
 class BottomButton extends StatelessWidget {
