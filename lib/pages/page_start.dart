@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -112,10 +113,10 @@ class _PageStartState extends State<PageStart> {
                             textScaleFactor: layoutProperties.textScalingFactor,
                           ).tr(),
                           SizedBox(height: layoutProperties.edgeInsets),
-                          Wrap(
+                          WrapSuper(
                             spacing: layoutProperties.edgeInsets,
-                            runSpacing: layoutProperties.edgeInsets,
-                            alignment: WrapAlignment.center,
+                            lineSpacing: layoutProperties.edgeInsets,
+                            alignment: WrapSuperAlignment.center,
                             children: [
                               SizedBox(
                                 width: cardWidth,

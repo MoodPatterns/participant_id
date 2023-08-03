@@ -33,6 +33,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
+  assorted_layout_widgets: ^8.0.4
   auto_size_text: ^3.0.0
   bip39: ^1.0.6
   chips_choice: ^3.0.0
