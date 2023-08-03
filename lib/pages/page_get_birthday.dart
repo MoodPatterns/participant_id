@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:date_picker_plus/date_picker_plus.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -85,7 +87,7 @@ class _PageGetBirthdayState extends State<PageGetBirthday> {
                 SizedBox(height: layoutProperties.edgeInsets*2,),
                 MediaQuery(
                   data: mq.copyWith(
-                    textScaleFactor: layoutProperties.textScalingFactor,
+                    textScaleFactor: pow(layoutProperties.textScalingFactor, 0.8).toDouble(), //rest does not scale - 1 wouldn't fit 4k layout
                   ),
                   child: DatePicker(
                     initialDate: pi.birthDay ?? DateTime(2000, 1, 1),
