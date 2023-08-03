@@ -42,6 +42,8 @@
   "privacy_policy": "Privacy Policy",
   "privacy_policy_url": "https://moodpatterns.info/participantId/privacy/en.html",
   "question_x_of_y": "Question {x} of {y}",
+  "reproducible_stable": "reproducible & stable",
+  "reproducible_stable_explanation": "The same inputs will always produce the same Participant ID, and we explicitly selected all questions to have stable answers over time for adults.",
   "secure": "secure",
   "short_description": "Converts things only you know into a reproducible but irreversible participant ID.",
   "show_id": "show ID",

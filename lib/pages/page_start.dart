@@ -132,7 +132,7 @@ class _PageStartState extends State<PageStart> {
                                     text: 'md5_explanation'.tr(),
                                     style: theme.textTheme.bodySmall,
                                   ),
-                                  explanationStyle: theme.textTheme.bodyLarge!,
+                                  explanationStyle: theme.textTheme.bodySmall!,
                                 ),
                               ),
                               SizedBox(
@@ -150,7 +150,25 @@ class _PageStartState extends State<PageStart> {
                                     text: 'anonymous_explanation'.tr(),
                                     style: theme.textTheme.bodySmall,
                                   ),
-                                  explanationStyle: theme.textTheme.bodyLarge!,
+                                  explanationStyle: theme.textTheme.bodySmall!,
+                                ),
+                              ),
+                              SizedBox(
+                                width: cardWidth,
+                                height: cardWidth * 1.34,
+                                child: DetailsCard(
+                                  padding: layoutProperties.edgeInsets,
+                                  theme: theme,
+                                  textScalingFactor:
+                                  layoutProperties.textScalingFactor,
+                                  icon: MdiIcons.repeatVariant,
+                                  header: 'reproducible_stable'.tr(),
+                                  headerStyle: theme.textTheme.headlineLarge!,
+                                  explanation: TextSpan(
+                                    text: 'reproducible_stable_explanation'.tr(),
+                                    style: theme.textTheme.bodySmall,
+                                  ),
+                                  explanationStyle: theme.textTheme.bodySmall!,
                                 ),
                               ),
                               SizedBox(
@@ -179,7 +197,7 @@ class _PageStartState extends State<PageStart> {
                                       ),
                                     ],
                                   ),
-                                  explanationStyle: theme.textTheme.bodyLarge!,
+                                  explanationStyle: theme.textTheme.bodySmall!,
                                 ),
                               ),
                             ],

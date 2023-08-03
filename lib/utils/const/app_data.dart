@@ -14,8 +14,8 @@ class AppData {
   // body area. Wider content gets growing side padding, kind of like on most
   // web pages when they are used on super wide screen. Just a design used for
   // this demo app, that works pretty well in this use case too.
-  static const double maxBodyWidth = 1000;
-  static const double maxBodyWidthBigDesktop = 1400;
+  static const double maxBodyWidth = 1280;
+  static const double maxBodyWidthBigDesktop = 1680;
 
   static const double bigDesktopWidthBreakpoint = 2800;
   static const double desktopBreakpoint = 1150;
