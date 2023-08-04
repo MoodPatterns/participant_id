@@ -48,7 +48,7 @@
   "reproducible_stable": "reproducible & stable",
   "reproducible_stable_explanation": "The same inputs will always produce the same Participant Id, and we explicitly selected all questions to have stable answers over time for adults.\n\nYou don't need to remember your Id because you, and only you, can re-generate it anytime.",
   "secure": "secure",
-  "short_description": "Converts things only you know into an anonymous, secure, and stable Participant Id.",
+  "short_description": "Use personal information to generate an anonymous, secure, and stable Participant Id.",
   "show_id": "show Id",
   "source_code": "Source code",
   "support": "Help",
