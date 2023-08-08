@@ -10,7 +10,7 @@ import 'package:participant_id/utils/models/participant_id.dart';
 
 class PersonalInformation {
   String? firstWord;
-  String? callName;
+  String? motherMaidenName;
   DateTime? birthDay;
   int? olderSiblings;
   LongFinger? longFinger;
@@ -18,7 +18,7 @@ class PersonalInformation {
 
   String concatAll() {
     return ('${removeDiacritics(firstWord ?? '').removeAllWhitespace().replaceSpecialChars()}'
-        '-${removeDiacritics(callName ?? '').removeAllWhitespace().replaceSpecialChars()}'
+        '-${removeDiacritics(motherMaidenName ?? '').removeAllWhitespace().replaceSpecialChars()}'
         '-${birthDay?.year ?? '0'}'
         '-${birthDay?.month ?? '0'}'
         '-${birthDay?.day ?? '0'}'

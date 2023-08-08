@@ -9,16 +9,16 @@ import 'package:participant_id/widgets/bottom_button.dart';
 import '../utils/const/app_data.dart';
 import '../widgets/page_body.dart';
 
-class PageGetCallName extends StatefulWidget {
+class PageGetMotherMaidenName extends StatefulWidget {
   final PersonalInformation pi;
 
-  const PageGetCallName({super.key, required this.pi});
+  const PageGetMotherMaidenName({super.key, required this.pi});
 
   @override
-  State<PageGetCallName> createState() => _PageGetCallNameState();
+  State<PageGetMotherMaidenName> createState() => _PageGetMotherMaidenNameState();
 }
 
-class _PageGetCallNameState extends State<PageGetCallName> {
+class _PageGetMotherMaidenNameState extends State<PageGetMotherMaidenName> {
   late PersonalInformation pi;
 
   @override
@@ -46,7 +46,7 @@ class _PageGetCallNameState extends State<PageGetCallName> {
         bottomNavigationBar: BottomButton(
           onPressed:() {Get.to(() => PageGetBirthday(pi: pi), transition: Transition.noTransition);},
           text: 'next'.tr().toUpperCase(),
-          isActive: !(pi.callName == null || pi.callName == ""),
+          isActive: !(pi.motherMaidenName == null || pi.motherMaidenName == ""),
           theme: theme,
           layoutProperties: layoutProperties,
         ),
@@ -62,7 +62,7 @@ class _PageGetCallNameState extends State<PageGetCallName> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  'call_name_question',
+                  'mother_maiden_name_question',
                   style: theme.textTheme.titleLarge,
                   textScaleFactor: layoutProperties.textScalingFactor,
                   textAlign: TextAlign.center,
@@ -73,7 +73,7 @@ class _PageGetCallNameState extends State<PageGetCallName> {
                   child: Padding(
                     padding: EdgeInsets.all(layoutProperties.edgeInsets),
                     child: Text(
-                      'call_name_explanation',
+                      'mother_maiden_name_explanation',
                       style: theme.textTheme.labelMedium!.copyWith(color: theme.colorScheme.onTertiary),
                       textScaleFactor: layoutProperties.textScalingFactor,
                       textAlign: TextAlign.center,
@@ -86,20 +86,20 @@ class _PageGetCallNameState extends State<PageGetCallName> {
                     textScaleFactor: layoutProperties.textScalingFactor,
                   ),
                   child: TextFormField(
-                    initialValue: pi.callName,
+                    initialValue: pi.motherMaidenName,
                     autofocus: true,
                     decoration: InputDecoration(
                       icon: Icon(MdiIcons.commentAccountOutline),
-                      hintText: 'call_name_hint'.tr(),
-                      labelText: 'call_name_label'.tr(),
+                      hintText: 'mother_maiden_name_hint'.tr(),
+                      labelText: 'mother_maiden_name_label'.tr(),
                     ),
                     onChanged: (String? value) {
                       setState(() {
-                        pi.callName = value;
+                        pi.motherMaidenName = value;
                       });
                     },
                     onFieldSubmitted: (String? s) {
-                      if (!(pi.callName == null || pi.callName == "")) {
+                      if (!(pi.motherMaidenName == null || pi.motherMaidenName == "")) {
                         Get.to(() => PageGetBirthday(pi: pi),
                             transition: Transition.noTransition);
                       }

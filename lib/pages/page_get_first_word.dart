@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Trans;
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:participant_id/pages/page_get_call_name.dart';
+import 'package:participant_id/pages/page_get_mother_maiden_name.dart';
 import 'package:participant_id/utils/models/personal_information.dart';
 import 'package:participant_id/widgets/bottom_button.dart';
 
@@ -45,7 +45,7 @@ class _PageGetFirstWordState extends State<PageGetFirstWord> {
       ),
       bottomNavigationBar: BottomButton(
         onPressed: () {
-          Get.to(() => PageGetCallName(pi: pi),
+          Get.to(() => PageGetMotherMaidenName(pi: pi),
               transition: Transition.noTransition);
         },
         text: 'next'.tr().toUpperCase(),
@@ -108,7 +108,7 @@ class _PageGetFirstWordState extends State<PageGetFirstWord> {
                     },
                     onFieldSubmitted: (String? s) {
                       if (!(pi.firstWord == null || pi.firstWord == "")) {
-                        Get.to(() => PageGetCallName(pi: pi),
+                        Get.to(() => PageGetMotherMaidenName(pi: pi),
                             transition: Transition.noTransition);
                       }
                     },
