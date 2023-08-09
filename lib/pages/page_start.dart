@@ -38,180 +38,190 @@ class _PageStartState extends State<PageStart> {
     var layoutProperties = AppData.layoutProperties(mq.size.width);
 
     var cardWidth = List<double>.from([
-      mq.size.width / 2,
-      mq.size.height / 2,
-      200 * pow(layoutProperties.textScalingFactor, 0.75)
+      mq.size.width * 0.8,
+      mq.size.height * 0.8,
+      190 * pow(layoutProperties.textScalingFactor, 0.75)
     ]).reduce(min);
 
-    return Scaffold(
-        appBar: AppBar(
-          leading: Builder(
-            builder: (context) => // Ensure Scaffold is in context
-                IconButton(
-                    icon: const Icon(Icons.menu),
-                    onPressed: () => Scaffold.of(context).openDrawer()),
+    if (cardWidth < min(layoutProperties.maxWidth, mq.size.width)/5){
+      cardWidth = max(min(layoutProperties.maxWidth, mq.size.width)/5, cardWidth);
+    } else if (cardWidth < min(mq.size.width, mq.size.height)/2.5 ){
+      cardWidth = max(min(mq.size.width, mq.size.height)/2.5, cardWidth);
+    } else if (cardWidth < min(mq.size.width, mq.size.height)*0.8){
+      cardWidth = max(min(mq.size.width, mq.size.height)*0.8, cardWidth);
+    }
+
+    return SafeArea(
+      child: Scaffold(
+          appBar: AppBar(
+            leading: Builder(
+              builder: (context) => // Ensure Scaffold is in context
+                  IconButton(
+                      icon: const Icon(Icons.menu),
+                      onPressed: () => Scaffold.of(context).openDrawer()),
+            ),
+            title: const Text("app_name").tr(),
           ),
-          title: const Text("app_name").tr(),
-        ),
-        drawer: const NavDrawer(
-          selected: NavDrawerEnum.home,
-        ),
-        bottomNavigationBar: BottomButton(
-          onPressed: () {
-            Get.to(() => PageGetFirstWord(pi: PersonalInformation()));
-          },
-          text: 'create_participant_id'.tr().toUpperCase(),
-          isActive: true,
-          theme: theme,
-          layoutProperties: layoutProperties,
-        ),
-        body: Padding(
-          padding: EdgeInsets.all(layoutProperties.edgeInsets),
-          child: PageBody(
-            constraints: BoxConstraints(maxWidth: layoutProperties.maxWidth),
-            controller: scrollController,
-            child: SingleChildScrollView(
+          drawer: const NavDrawer(
+            selected: NavDrawerEnum.home,
+          ),
+          bottomNavigationBar: BottomButton(
+            onPressed: () {
+              Get.to(() => PageGetFirstWord(pi: PersonalInformation()));
+            },
+            text: 'create_participant_id'.tr().toUpperCase(),
+            isActive: true,
+            theme: theme,
+            layoutProperties: layoutProperties,
+          ),
+          body: Padding(
+            padding: EdgeInsets.only(left: layoutProperties.edgeInsets, right: layoutProperties.edgeInsets,),
+            child: PageBody(
+              constraints: BoxConstraints(maxWidth: layoutProperties.maxWidth),
               controller: scrollController,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  TextButton(
-                      onPressed: () {
-                        Get.to(
-                            () => PageGetFirstWord(pi: PersonalInformation()));
-                      },
-                      child: Text(
-                        'create_participant_id',
-                        style: theme.textTheme.displaySmall,
-                        textScaleFactor: layoutProperties.textScalingFactor,
-                        textAlign: TextAlign.center,
-                      ).tr()),
-                  SizedBox(height: layoutProperties.edgeInsets),
-                  Text(
-                    'short_description',
-                    style: theme.textTheme.titleSmall,
-                    textScaleFactor: layoutProperties.textScalingFactor,
-                    textAlign: TextAlign.center,
-                  ).tr(),
-                  SizedBox(height: layoutProperties.edgeInsets),
-                  Card(
-                    color: theme.colorScheme.secondary,
-                    child: Padding(
-                      padding: EdgeInsets.all(layoutProperties.edgeInsets),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'its_',
-                            style: theme.textTheme.titleLarge!.copyWith(
-                                color: theme.colorScheme.onSecondary
-                                            .computeLuminance() <
-                                        0.5
-                                    ? Colors.black
-                                    : Colors.white),
-                            textScaleFactor: layoutProperties.textScalingFactor,
-                          ).tr(),
-                          SizedBox(height: layoutProperties.edgeInsets),
-                          WrapSuper(
-                            spacing: layoutProperties.edgeInsets,
-                            lineSpacing: layoutProperties.edgeInsets,
-                            alignment: WrapSuperAlignment.center,
-                            children: [
-                              SizedBox(
-                                width: cardWidth,
-                                height: cardWidth * 1.34,
-                                child: DetailsCard(
-                                  padding: layoutProperties.edgeInsets,
-                                  theme: theme,
-                                  textScalingFactor:
-                                      layoutProperties.textScalingFactor,
-                                  icon: FlutterRemix.shield_check_line,
-                                  header: 'secure'.tr(),
-                                  headerStyle: theme.textTheme.headlineLarge!,
-                                  explanation: TextSpan(
-                                    text: 'md5_explanation'.tr(),
-                                    style: theme.textTheme.bodySmall,
+              child: SingleChildScrollView(
+                controller: scrollController,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    TextButton(
+                        onPressed: () {
+                          Get.to(
+                              () => PageGetFirstWord(pi: PersonalInformation()));
+                        },
+                        child: Text(
+                          'create_participant_id',
+                          style: theme.textTheme.displaySmall,
+                          textScaleFactor: layoutProperties.textScalingFactor,
+                          textAlign: TextAlign.center,
+                        ).tr()),
+                    SizedBox(height: layoutProperties.edgeInsets),
+                    Text(
+                      'short_description',
+                      style: theme.textTheme.titleSmall,
+                      textScaleFactor: layoutProperties.textScalingFactor,
+                      textAlign: TextAlign.center,
+                    ).tr(),
+                    SizedBox(height: layoutProperties.edgeInsets),
+                    Card(
+                      color: theme.colorScheme.secondary,
+                      child: Padding(
+                        padding: EdgeInsets.all(layoutProperties.edgeInsets),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'its_',
+                              style: theme.textTheme.titleLarge!.copyWith(
+                                  color: theme.colorScheme.onSecondary
+                                              .computeLuminance() <
+                                          0.5
+                                      ? Colors.black
+                                      : Colors.white),
+                              textScaleFactor: layoutProperties.textScalingFactor,
+                            ).tr(),
+                            SizedBox(height: layoutProperties.edgeInsets),
+                            WrapSuper(
+                              spacing: layoutProperties.edgeInsets,
+                              lineSpacing: layoutProperties.edgeInsets,
+                              alignment: WrapSuperAlignment.center,
+                              children: [
+                                SizedBox(
+                                  width: cardWidth,
+                                  height: cardWidth * 1.34,
+                                  child: DetailsCard(
+                                    padding: layoutProperties.edgeInsets,
+                                    theme: theme,
+                                    textScalingFactor:
+                                        layoutProperties.textScalingFactor,
+                                    icon: FlutterRemix.shield_check_line,
+                                    header: 'secure'.tr(),
+                                    headerStyle: theme.textTheme.headlineLarge!,
+                                    explanation: TextSpan(
+                                      text: 'md5_explanation'.tr(),
+                                      style: theme.textTheme.bodySmall,
+                                    ),
+                                    explanationStyle: theme.textTheme.bodySmall!,
                                   ),
-                                  explanationStyle: theme.textTheme.bodySmall!,
                                 ),
-                              ),
-                              SizedBox(
-                                width: cardWidth,
-                                height: cardWidth * 1.34,
-                                child: DetailsCard(
-                                  padding: layoutProperties.edgeInsets,
-                                  theme: theme,
-                                  textScalingFactor:
-                                      layoutProperties.textScalingFactor,
-                                  icon: MdiIcons.incognito,
-                                  header: 'anonymous'.tr(),
-                                  headerStyle: theme.textTheme.headlineLarge!,
-                                  explanation: TextSpan(
-                                    text: 'anonymous_explanation'.tr(),
-                                    style: theme.textTheme.bodySmall,
+                                SizedBox(
+                                  width: cardWidth,
+                                  height: cardWidth * 1.34,
+                                  child: DetailsCard(
+                                    padding: layoutProperties.edgeInsets,
+                                    theme: theme,
+                                    textScalingFactor:
+                                        layoutProperties.textScalingFactor,
+                                    icon: MdiIcons.incognito,
+                                    header: 'anonymous'.tr(),
+                                    headerStyle: theme.textTheme.headlineLarge!,
+                                    explanation: TextSpan(
+                                      text: 'anonymous_explanation'.tr(),
+                                      style: theme.textTheme.bodySmall,
+                                    ),
+                                    explanationStyle: theme.textTheme.bodySmall!,
                                   ),
-                                  explanationStyle: theme.textTheme.bodySmall!,
                                 ),
-                              ),
-                              SizedBox(
-                                width: cardWidth,
-                                height: cardWidth * 1.34,
-                                child: DetailsCard(
-                                  padding: layoutProperties.edgeInsets,
-                                  theme: theme,
-                                  textScalingFactor:
-                                  layoutProperties.textScalingFactor,
-                                  icon: MdiIcons.repeatVariant,
-                                  header: 'reproducible_stable'.tr(),
-                                  headerStyle: theme.textTheme.headlineLarge!,
-                                  explanation: TextSpan(
-                                    text: 'reproducible_stable_explanation'.tr(),
-                                    style: theme.textTheme.bodySmall,
+                                SizedBox(
+                                  width: cardWidth,
+                                  height: cardWidth * 1.34,
+                                  child: DetailsCard(
+                                    padding: layoutProperties.edgeInsets,
+                                    theme: theme,
+                                    textScalingFactor:
+                                    layoutProperties.textScalingFactor,
+                                    icon: MdiIcons.repeatVariant,
+                                    header: 'reproducible_stable'.tr(),
+                                    headerStyle: theme.textTheme.headlineLarge!,
+                                    explanation: TextSpan(
+                                      text: 'reproducible_stable_explanation'.tr(),
+                                      style: theme.textTheme.bodySmall,
+                                    ),
+                                    explanationStyle: theme.textTheme.bodySmall!,
                                   ),
-                                  explanationStyle: theme.textTheme.bodySmall!,
                                 ),
-                              ),
-                              SizedBox(
-                                width: cardWidth,
-                                height: cardWidth * 1.34,
-                                child: DetailsCard(
-                                  padding: layoutProperties.edgeInsets,
-                                  theme: theme,
-                                  textScalingFactor:
-                                      layoutProperties.textScalingFactor,
-                                  icon: FlutterRemix.open_source_line,
-                                  header: 'open_source'.tr(),
-                                  headerStyle: theme.textTheme.headlineLarge!,
-                                  explanation: TextSpan(
-                                    text: 'open_source_explanation'.tr(),
-                                    style: theme.textTheme.bodySmall,
-                                    children: [
-                                      TextSpan(
-                                        text: 'link_to_repository'.tr(),
-                                        style: TextStyle(
-                                          color: theme.colorScheme.secondary,
-                                          decoration: TextDecoration.underline,
+                                SizedBox(
+                                  width: cardWidth,
+                                  height: cardWidth * 1.34,
+                                  child: DetailsCard(
+                                    padding: layoutProperties.edgeInsets,
+                                    theme: theme,
+                                    textScalingFactor:
+                                        layoutProperties.textScalingFactor,
+                                    icon: FlutterRemix.open_source_line,
+                                    header: 'open_source'.tr(),
+                                    headerStyle: theme.textTheme.headlineLarge!,
+                                    explanation: TextSpan(
+                                      text: 'open_source_explanation'.tr(),
+                                      style: theme.textTheme.bodySmall,
+                                      children: [
+                                        TextSpan(
+                                          text: 'link_to_repository'.tr(),
+                                          style: TextStyle(
+                                            color: theme.colorScheme.secondary,
+                                            decoration: TextDecoration.underline,
+                                          ),
+                                          recognizer: TapGestureRecognizer()
+                                            ..onTap = _launchRepo,
                                         ),
-                                        recognizer: TapGestureRecognizer()
-                                          ..onTap = _launchRepo,
-                                      ),
-                                    ],
+                                      ],
+                                    ),
+                                    explanationStyle: theme.textTheme.bodySmall!,
                                   ),
-                                  explanationStyle: theme.textTheme.bodySmall!,
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  )
-                ],
+                    )
+                  ],
+                ),
               ),
             ),
-          ),
-        ));
+          )),
+    );
   }
 
   _launchRepo() async {

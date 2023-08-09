@@ -24,55 +24,58 @@ class PageTheme extends StatelessWidget {
 
     var layoutProperties = AppData.layoutProperties(mq.size.width);
 
-    return Scaffold(
-      appBar: AppBar(
-        leading: Builder(
-          builder: (context) => // Ensure Scaffold is in context
-              IconButton(
-                  icon: const Icon(Icons.menu),
-                  onPressed: () => Scaffold.of(context).openDrawer()),
+    return SafeArea(
+      bottom: false,
+      child: Scaffold(
+        appBar: AppBar(
+          leading: Builder(
+            builder: (context) => // Ensure Scaffold is in context
+                IconButton(
+                    icon: const Icon(Icons.menu),
+                    onPressed: () => Scaffold.of(context).openDrawer()),
+          ),
+          title: const Text("app_name").tr(),
         ),
-        title: const Text("app_name").tr(),
-      ),
-      drawer: const NavDrawer(
-        selected: NavDrawerEnum.theme,
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(layoutProperties.edgeInsets),
-        child: PageBody(
-          constraints: BoxConstraints(maxWidth: layoutProperties.maxWidth),
-          controller: scrollController,
-          child: SingleChildScrollView(
-              controller: scrollController,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Text(
-                    'theme',
-                    textScaleFactor: layoutProperties.textScalingFactor,
-                    style: theme.textTheme.titleLarge,
-                  ).tr(),
-                  // A 3-way theme toggle switch that shows the scheme.
-                  FlexThemeModeSwitch(
-                    themeMode: GetIt.I<ThemeController>().themeMode,
-                    onThemeModeChanged: GetIt.I<ThemeController>().setThemeMode,
-                    flexSchemeData: AppColor
-                        .schemes[GetIt.I<ThemeController>().schemeIndex],
-                    optionButtonBorderRadius:
-                        GetIt.I<ThemeController>().useSubThemes ? 12 : 4,
-                    buttonOrder: FlexThemeModeButtonOrder.lightSystemDark,
-                  ),
-                  SizedBox(height: layoutProperties.edgeInsets),
-                  // Theme popup menu button to select color scheme.
-                  ThemePopupMenu(
-                    contentPadding: EdgeInsets.zero,
-                    schemeIndex: GetIt.I<ThemeController>().schemeIndex,
-                    onChanged: GetIt.I<ThemeController>().setSchemeIndex,
-                  ),
-                  // Active theme color indicators.
-                ],
-              )),
+        drawer: const NavDrawer(
+          selected: NavDrawerEnum.theme,
+        ),
+        body: Padding(
+          padding: EdgeInsets.all(layoutProperties.edgeInsets),
+          child: PageBody(
+            constraints: BoxConstraints(maxWidth: layoutProperties.maxWidth),
+            controller: scrollController,
+            child: SingleChildScrollView(
+                controller: scrollController,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(
+                      'theme',
+                      textScaleFactor: layoutProperties.textScalingFactor,
+                      style: theme.textTheme.titleLarge,
+                    ).tr(),
+                    // A 3-way theme toggle switch that shows the scheme.
+                    FlexThemeModeSwitch(
+                      themeMode: GetIt.I<ThemeController>().themeMode,
+                      onThemeModeChanged: GetIt.I<ThemeController>().setThemeMode,
+                      flexSchemeData: AppColor
+                          .schemes[GetIt.I<ThemeController>().schemeIndex],
+                      optionButtonBorderRadius:
+                          GetIt.I<ThemeController>().useSubThemes ? 12 : 4,
+                      buttonOrder: FlexThemeModeButtonOrder.lightSystemDark,
+                    ),
+                    SizedBox(height: layoutProperties.edgeInsets),
+                    // Theme popup menu button to select color scheme.
+                    ThemePopupMenu(
+                      contentPadding: EdgeInsets.zero,
+                      schemeIndex: GetIt.I<ThemeController>().schemeIndex,
+                      onChanged: GetIt.I<ThemeController>().setSchemeIndex,
+                    ),
+                    // Active theme color indicators.
+                  ],
+                )),
+          ),
         ),
       ),
     );

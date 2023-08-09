@@ -55,120 +55,123 @@ class _PageShowIdState extends State<PageShowId> {
         _exit();
         return false;
       },
-      child: Scaffold(
-        bottomNavigationBar: BottomButton(
-          onPressed: _exit,
-          text: 'finish'.tr().toUpperCase(),
-          isActive: id != null,
-          theme: theme,
-          layoutProperties: layoutProperties,
-          message: 'please_wait'.tr(),
-        ),
-        body: Padding(
-          padding: EdgeInsets.all(layoutProperties.edgeInsets),
-          child: PageBody(
-            constraints: BoxConstraints(maxWidth: layoutProperties.maxWidth),
-            controller: scrollController,
-            child: SingleChildScrollView(
+      child: SafeArea(
+        top: false,
+        child: Scaffold(
+          bottomNavigationBar: BottomButton(
+            onPressed: _exit,
+            text: 'finish'.tr().toUpperCase(),
+            isActive: id != null,
+            theme: theme,
+            layoutProperties: layoutProperties,
+            message: 'please_wait'.tr(),
+          ),
+          body: Padding(
+            padding: EdgeInsets.all(layoutProperties.edgeInsets),
+            child: PageBody(
+              constraints: BoxConstraints(maxWidth: layoutProperties.maxWidth),
               controller: scrollController,
-              child: id == null
-                  ? Center(
-                      child: SizedBox(
-                        width: 100 * layoutProperties.textScalingFactor,
-                        height: 100 * layoutProperties.textScalingFactor,
-                        child: const FittedBox(
-                          fit: BoxFit.contain,
-                          child: CircularProgressIndicator(),
-                        ),
-                      ),
-                    )
-                  : Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          'your_participant_id_',
-                          style: theme.textTheme.titleLarge,
-                          textScaleFactor: layoutProperties.textScalingFactor,
-                          textAlign: TextAlign.center,
-                        ).tr(),
-                        SizedBox(height: layoutProperties.edgeInsets),
-                        OutlinedButton(
-                          style: OutlinedButton.styleFrom(
-                            side: BorderSide(
-                                color: theme.primaryColor,
-                                width: 2 * layoutProperties.textScalingFactor),
+              child: SingleChildScrollView(
+                controller: scrollController,
+                child: id == null
+                    ? Center(
+                        child: SizedBox(
+                          width: 100 * layoutProperties.textScalingFactor,
+                          height: 100 * layoutProperties.textScalingFactor,
+                          child: const FittedBox(
+                            fit: BoxFit.contain,
+                            child: CircularProgressIndicator(),
                           ),
-                          onPressed: _copyId,
-                          child: Padding(
-                            padding:
-                                EdgeInsets.all(layoutProperties.edgeInsets),
-                            child: Text(
-                              id!.id,
-                              textScaleFactor:
-                                  layoutProperties.textScalingFactor,
+                        ),
+                      )
+                    : Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            'your_participant_id_',
+                            style: theme.textTheme.titleLarge,
+                            textScaleFactor: layoutProperties.textScalingFactor,
+                            textAlign: TextAlign.center,
+                          ).tr(),
+                          SizedBox(height: layoutProperties.edgeInsets),
+                          OutlinedButton(
+                            style: OutlinedButton.styleFrom(
+                              side: BorderSide(
+                                  color: theme.primaryColor,
+                                  width: 2 * layoutProperties.textScalingFactor),
+                            ),
+                            onPressed: _copyId,
+                            child: Padding(
+                              padding:
+                                  EdgeInsets.all(layoutProperties.edgeInsets),
+                              child: Text(
+                                id!.id,
+                                textScaleFactor:
+                                    layoutProperties.textScalingFactor,
+                              ),
                             ),
                           ),
-                        ),
-                        SizedBox(height: layoutProperties.edgeInsets * 3),
-                        Text(
-                          'your_mnemonic_',
-                          style: theme.textTheme.titleLarge,
-                          textScaleFactor: layoutProperties.textScalingFactor,
-                          textAlign: TextAlign.center,
-                        ).tr(),
-                        SizedBox(height: layoutProperties.edgeInsets),
-                        OutlinedButton(
-                          style: OutlinedButton.styleFrom(
-                            side: BorderSide(
-                                color: theme.primaryColor,
-                                width: 2 * layoutProperties.textScalingFactor),
+                          SizedBox(height: layoutProperties.edgeInsets * 3),
+                          Text(
+                            'your_mnemonic_',
+                            style: theme.textTheme.titleLarge,
+                            textScaleFactor: layoutProperties.textScalingFactor,
+                            textAlign: TextAlign.center,
+                          ).tr(),
+                          SizedBox(height: layoutProperties.edgeInsets),
+                          OutlinedButton(
+                            style: OutlinedButton.styleFrom(
+                              side: BorderSide(
+                                  color: theme.primaryColor,
+                                  width: 2 * layoutProperties.textScalingFactor),
+                            ),
+                            onPressed: _copyMnemonic,
+                            child: Padding(
+                              padding:
+                                  EdgeInsets.all(layoutProperties.edgeInsets),
+                              child: WrapSuper(
+                                  spacing: layoutProperties.edgeInsets,
+                                  lineSpacing: layoutProperties.edgeInsets,
+                                  alignment: WrapSuperAlignment.center,
+                                  children: id!.mnemonic
+                                      .split(' ')
+                                      .map((w) => Text(w,
+                                          textScaleFactor:
+                                              layoutProperties.textScalingFactor))
+                                      .toList(growable: false)),
+                            ),
                           ),
-                          onPressed: _copyMnemonic,
-                          child: Padding(
-                            padding:
-                                EdgeInsets.all(layoutProperties.edgeInsets),
-                            child: WrapSuper(
-                                spacing: layoutProperties.edgeInsets,
-                                lineSpacing: layoutProperties.edgeInsets,
-                                alignment: WrapSuperAlignment.center,
-                                children: id!.mnemonic
-                                    .split(' ')
-                                    .map((w) => Text(w,
-                                        textScaleFactor:
-                                            layoutProperties.textScalingFactor))
-                                    .toList(growable: false)),
+                          SizedBox(height: layoutProperties.edgeInsets * 3),
+                          Text(
+                            'your_qr_',
+                            style: theme.textTheme.titleLarge,
+                            textScaleFactor: layoutProperties.textScalingFactor,
+                            textAlign: TextAlign.center,
+                          ).tr(),
+                          SizedBox(height: layoutProperties.edgeInsets),
+                          QrImageView(
+                            data: id!.id,
+                            version: QrVersions.auto,
+                            size: [
+                              mq.size.width / 2,
+                              mq.size.height / 2,
+                              200 * layoutProperties.textScalingFactor,
+                            ].reduce(min),
+                            dataModuleStyle: QrDataModuleStyle(
+                              color: theme.colorScheme.secondary,
+                            ),
+                            eyeStyle: QrEyeStyle(
+                              color: theme.colorScheme.secondary,
+                              eyeShape: QrEyeShape.square,
+                            ),
+                            // eyeStyle: QrEyeStyle(
+                            //   color: theme.colorScheme.secondary,
+                            // ),
                           ),
-                        ),
-                        SizedBox(height: layoutProperties.edgeInsets * 3),
-                        Text(
-                          'your_qr_',
-                          style: theme.textTheme.titleLarge,
-                          textScaleFactor: layoutProperties.textScalingFactor,
-                          textAlign: TextAlign.center,
-                        ).tr(),
-                        SizedBox(height: layoutProperties.edgeInsets),
-                        QrImageView(
-                          data: id!.id,
-                          version: QrVersions.auto,
-                          size: [
-                            mq.size.width / 2,
-                            mq.size.height / 2,
-                            200 * layoutProperties.textScalingFactor,
-                          ].reduce(min),
-                          dataModuleStyle: QrDataModuleStyle(
-                            color: theme.colorScheme.secondary,
-                          ),
-                          eyeStyle: QrEyeStyle(
-                            color: theme.colorScheme.secondary,
-                            eyeShape: QrEyeShape.square,
-                          ),
-                          // eyeStyle: QrEyeStyle(
-                          //   color: theme.colorScheme.secondary,
-                          // ),
-                        ),
-                      ],
-                    ),
+                        ],
+                      ),
+              ),
             ),
           ),
         ),

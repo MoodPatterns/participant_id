@@ -40,69 +40,71 @@ class _PageGetBirthdayState extends State<PageGetBirthday> {
 
     var layoutProperties = AppData.layoutProperties(mq.size.width);
 
-    return Scaffold(
-      appBar: AppBar(
-        title:
-            const Text('question_x_of_y').tr(namedArgs: {'x': '3', 'y': '6'}),
-      ),
-        bottomNavigationBar: BottomButton(
-          onPressed:() {
-            Get.to(() => PageGetOlderSiblings(pi: pi), transition: Transition.noTransition);
-          },
-          text: 'next'.tr().toUpperCase(),
-          isActive: !(pi.birthDay == null),
-          theme: theme,
-          layoutProperties: layoutProperties,
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title:
+              const Text('question_x_of_y').tr(namedArgs: {'x': '3', 'y': '6'}),
         ),
-      body: Padding(
-        padding: EdgeInsets.all(layoutProperties.edgeInsets),
-        child: PageBody(
-          constraints: BoxConstraints(maxWidth: layoutProperties.maxWidth),
-          controller: scrollController,
-          child: SingleChildScrollView(
+          bottomNavigationBar: BottomButton(
+            onPressed:() {
+              Get.to(() => PageGetOlderSiblings(pi: pi), transition: Transition.noTransition);
+            },
+            text: 'next'.tr().toUpperCase(),
+            isActive: !(pi.birthDay == null),
+            theme: theme,
+            layoutProperties: layoutProperties,
+          ),
+        body: Padding(
+          padding: EdgeInsets.all(layoutProperties.edgeInsets),
+          child: PageBody(
+            constraints: BoxConstraints(maxWidth: layoutProperties.maxWidth),
             controller: scrollController,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Text(
-                  'birthday_question',
-                  style: theme.textTheme.titleLarge,
-                  textScaleFactor: layoutProperties.textScalingFactor,
-                  textAlign: TextAlign.center,
-                ).tr(),
-                SizedBox(height: layoutProperties.edgeInsets,),
-                Card(
-                  color: theme.colorScheme.tertiary,
-                  child: Padding(
-                    padding: EdgeInsets.all(layoutProperties.edgeInsets),
-                    child: Text(
-                      'birthday_explanation',
-                      style: theme.textTheme.labelMedium!.copyWith(color: theme.colorScheme.onTertiary),
-                      textScaleFactor: layoutProperties.textScalingFactor,
-                      textAlign: TextAlign.center,
-                    ).tr(),
+            child: SingleChildScrollView(
+              controller: scrollController,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(
+                    'birthday_question',
+                    style: theme.textTheme.titleLarge,
+                    textScaleFactor: layoutProperties.textScalingFactor,
+                    textAlign: TextAlign.center,
+                  ).tr(),
+                  SizedBox(height: layoutProperties.edgeInsets,),
+                  Card(
+                    color: theme.colorScheme.tertiary,
+                    child: Padding(
+                      padding: EdgeInsets.all(layoutProperties.edgeInsets),
+                      child: Text(
+                        'birthday_explanation',
+                        style: theme.textTheme.labelMedium!.copyWith(color: theme.colorScheme.onTertiary),
+                        textScaleFactor: layoutProperties.textScalingFactor,
+                        textAlign: TextAlign.center,
+                      ).tr(),
+                    ),
                   ),
-                ),
-                SizedBox(height: layoutProperties.edgeInsets*2,),
-                MediaQuery(
-                  data: mq.copyWith(
-                    textScaleFactor: pow(layoutProperties.textScalingFactor, 0.8).toDouble(), //rest does not scale - 1 wouldn't fit 4k layout
-                  ),
-                  child: DatePicker(
-                    initialDate: pi.birthDay ?? DateTime(2000, 1, 1),
-                    initialPickerType: PickerType.years,
-                    minDate: DateTime(1900, 1, 1),
-                    maxDate: DateTime.now().subtract(const Duration(days:365*6)),
-                    slidersSize: 24 * layoutProperties.textScalingFactor,
-                    onDateChanged: (value) {
-                      setState(() {
-                        pi.birthDay = value;
-                      });
-                    },
-                  ),
-                )
-              ],
+                  SizedBox(height: layoutProperties.edgeInsets*2,),
+                  MediaQuery(
+                    data: mq.copyWith(
+                      textScaleFactor: pow(layoutProperties.textScalingFactor, 0.8).toDouble(), //rest does not scale - 1 wouldn't fit 4k layout
+                    ),
+                    child: DatePicker(
+                      initialDate: pi.birthDay ?? DateTime(2000, 1, 1),
+                      initialPickerType: PickerType.years,
+                      minDate: DateTime(1900, 1, 1),
+                      maxDate: DateTime.now().subtract(const Duration(days:365*6)),
+                      slidersSize: 24 * layoutProperties.textScalingFactor,
+                      onDateChanged: (value) {
+                        setState(() {
+                          pi.birthDay = value;
+                        });
+                      },
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),

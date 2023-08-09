@@ -49,85 +49,87 @@ class _PageGetLongFingerState extends State<PageGetLongFinger> {
 
     var layoutProperties = AppData.layoutProperties(mq.size.width);
 
-    return Scaffold(
-      appBar: AppBar(
-        title:
-            const Text('question_x_of_y').tr(namedArgs: {'x': '5', 'y': '6'}),
-      ),
-      bottomNavigationBar: BottomButton(
-        onPressed: () {
-          Get.to(() => PageGetDominantHand(pi: pi), transition: Transition.noTransition);
-        },
-        text: 'next'.tr().toUpperCase(),
-        isActive: !(pi.longFinger == null),
-        theme: theme,
-        layoutProperties: layoutProperties,
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(layoutProperties.edgeInsets),
-        child: PageBody(
-          constraints: BoxConstraints(maxWidth: layoutProperties.maxWidth),
-          controller: scrollController,
-          child: SingleChildScrollView(
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title:
+              const Text('question_x_of_y').tr(namedArgs: {'x': '5', 'y': '6'}),
+        ),
+        bottomNavigationBar: BottomButton(
+          onPressed: () {
+            Get.to(() => PageGetDominantHand(pi: pi), transition: Transition.noTransition);
+          },
+          text: 'next'.tr().toUpperCase(),
+          isActive: !(pi.longFinger == null),
+          theme: theme,
+          layoutProperties: layoutProperties,
+        ),
+        body: Padding(
+          padding: EdgeInsets.all(layoutProperties.edgeInsets),
+          child: PageBody(
+            constraints: BoxConstraints(maxWidth: layoutProperties.maxWidth),
             controller: scrollController,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  'long_finger_question',
-                  style: theme.textTheme.titleLarge,
-                  textScaleFactor: layoutProperties.textScalingFactor,
-                  textAlign: TextAlign.center,
-                ).tr(),
-                SizedBox(
-                  height: layoutProperties.edgeInsets,
-                ),
-                Card(
-                  color: theme.colorScheme.tertiary,
-                  child: Padding(
-                    padding: EdgeInsets.all(layoutProperties.edgeInsets),
-                    child: Text(
-                      'long_finger_explanation',
-                      style: theme.textTheme.labelMedium!
-                          .copyWith(color: theme.colorScheme.onTertiary),
-                      textScaleFactor: layoutProperties.textScalingFactor,
-                      textAlign: TextAlign.center,
-                    ).tr(args: ['finger_equal'.tr()]),
+            child: SingleChildScrollView(
+              controller: scrollController,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    'long_finger_question',
+                    style: theme.textTheme.titleLarge,
+                    textScaleFactor: layoutProperties.textScalingFactor,
+                    textAlign: TextAlign.center,
+                  ).tr(),
+                  SizedBox(
+                    height: layoutProperties.edgeInsets,
                   ),
-                ),
-                SizedBox(
-                  height: layoutProperties.edgeInsets * 2,
-                ),
-                ChipsChoice<int>.single(
-                  wrapped: false,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  choiceStyle: C2ChipStyle.filled(
-                      height: 32 * layoutProperties.textScalingFactor,
-                      padding:
-                          EdgeInsets.all(layoutProperties.edgeInsets / 2)),
-                  value: pi.longFinger?.index,
-                  onChanged: (val) => setState(() => pi.longFinger = LongFinger.values[val]),
-                  choiceItems: C2Choice.listFrom<int, FingerSelection>(
-                    source: options,
-                    value: (i, v) => i,
-                    label: (i, v) => v.label,
-                    tooltip: (i, v) => v.assetPath, // this is super hacky
+                  Card(
+                    color: theme.colorScheme.tertiary,
+                    child: Padding(
+                      padding: EdgeInsets.all(layoutProperties.edgeInsets),
+                      child: Text(
+                        'long_finger_explanation',
+                        style: theme.textTheme.labelMedium!
+                            .copyWith(color: theme.colorScheme.onTertiary),
+                        textScaleFactor: layoutProperties.textScalingFactor,
+                        textAlign: TextAlign.center,
+                      ).tr(args: ['finger_equal'.tr()]),
+                    ),
                   ),
-                  choiceBuilder: (item, i) {
-                    return CustomChip(
-                      label: item.label,
-                      width: min(mq.size.width/4, 120*layoutProperties.textScalingFactor),
-                      selected: item.selected,
-                      onSelect: item.select!,
-                      svgPath: item.tooltip!,
-                      layoutProperties: layoutProperties,// this is super hacky
-                    );
-                  },
-                )
-              ],
+                  SizedBox(
+                    height: layoutProperties.edgeInsets * 2,
+                  ),
+                  ChipsChoice<int>.single(
+                    wrapped: false,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    choiceStyle: C2ChipStyle.filled(
+                        height: 32 * layoutProperties.textScalingFactor,
+                        padding:
+                            EdgeInsets.all(layoutProperties.edgeInsets / 2)),
+                    value: pi.longFinger?.index,
+                    onChanged: (val) => setState(() => pi.longFinger = LongFinger.values[val]),
+                    choiceItems: C2Choice.listFrom<int, FingerSelection>(
+                      source: options,
+                      value: (i, v) => i,
+                      label: (i, v) => v.label,
+                      tooltip: (i, v) => v.assetPath, // this is super hacky
+                    ),
+                    choiceBuilder: (item, i) {
+                      return CustomChip(
+                        label: item.label,
+                        width: min(mq.size.width/4, 120*layoutProperties.textScalingFactor),
+                        selected: item.selected,
+                        onSelect: item.select!,
+                        svgPath: item.tooltip!,
+                        layoutProperties: layoutProperties,// this is super hacky
+                      );
+                    },
+                  )
+                ],
+              ),
             ),
           ),
         ),

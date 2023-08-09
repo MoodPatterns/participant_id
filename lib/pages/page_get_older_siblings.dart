@@ -42,74 +42,76 @@ class _PageGetOlderSiblingsState extends State<PageGetOlderSiblings> {
 
     var layoutProperties = AppData.layoutProperties(mq.size.width);
 
-    return Scaffold(
-      appBar: AppBar(
-        title:
-            const Text('question_x_of_y').tr(namedArgs: {'x': '4', 'y': '6'}),
-      ),
-        bottomNavigationBar: BottomButton(
-          onPressed:() {
-            Get.to(() => PageGetLongFinger(pi: pi), transition: Transition.noTransition);
-            },
-          text: 'next'.tr().toUpperCase(),
-          isActive: !(pi.olderSiblings == null),
-          theme: theme,
-          layoutProperties: layoutProperties,
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title:
+              const Text('question_x_of_y').tr(namedArgs: {'x': '4', 'y': '6'}),
         ),
-      body: Padding(
-        padding: EdgeInsets.all(layoutProperties.edgeInsets),
-        child: PageBody(
-          constraints: BoxConstraints(maxWidth: layoutProperties.maxWidth),
-          controller: scrollController,
-          child: SingleChildScrollView(
+          bottomNavigationBar: BottomButton(
+            onPressed:() {
+              Get.to(() => PageGetLongFinger(pi: pi), transition: Transition.noTransition);
+              },
+            text: 'next'.tr().toUpperCase(),
+            isActive: !(pi.olderSiblings == null),
+            theme: theme,
+            layoutProperties: layoutProperties,
+          ),
+        body: Padding(
+          padding: EdgeInsets.all(layoutProperties.edgeInsets),
+          child: PageBody(
+            constraints: BoxConstraints(maxWidth: layoutProperties.maxWidth),
             controller: scrollController,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Text(
-                  'older_siblings_question',
-                  style: theme.textTheme.titleLarge,
-                  textScaleFactor: layoutProperties.textScalingFactor,
-                  textAlign: TextAlign.center,
-                ).tr(),
-                SizedBox(height: layoutProperties.edgeInsets,),
-                Card(
-                  color: theme.colorScheme.tertiary,
-                  child: Padding(
-                    padding: EdgeInsets.all(layoutProperties.edgeInsets),
-                    child: Text(
-                      'older_siblings_explanation',
-                      style: theme.textTheme.labelMedium!.copyWith(color: theme.colorScheme.onTertiary),
-                      textScaleFactor: layoutProperties.textScalingFactor,
-                      textAlign: TextAlign.center,
-                    ).tr(),
-                  ),
-                ),
-                SizedBox(height: layoutProperties.edgeInsets*2,),
-                MediaQuery(
-                  data: mq.copyWith(
+            child: SingleChildScrollView(
+              controller: scrollController,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(
+                    'older_siblings_question',
+                    style: theme.textTheme.titleLarge,
                     textScaleFactor: layoutProperties.textScalingFactor,
-                  ),
-                  child: ChipsChoice<int>.single(
-                    wrapped: true,
-                    wrapCrossAlignment: WrapCrossAlignment.center,
-                    alignment: WrapAlignment.center,
-                    runAlignment: WrapAlignment.center,
-                    spacing: layoutProperties.edgeInsets,
-                    runSpacing: layoutProperties.edgeInsets,
-                    choiceCheckmark: true,
-                    choiceStyle: C2ChipStyle.filled(height: 32*layoutProperties.textScalingFactor, padding: EdgeInsets.all(layoutProperties.edgeInsets/2)),
-                    value: pi.olderSiblings,
-                    onChanged: (val) => setState(() => pi.olderSiblings = val),
-                    choiceItems: C2Choice.listFrom<int, String>(
-                      source: options,
-                      value: (i, v) => i,
-                      label: (i, v) => v,
+                    textAlign: TextAlign.center,
+                  ).tr(),
+                  SizedBox(height: layoutProperties.edgeInsets,),
+                  Card(
+                    color: theme.colorScheme.tertiary,
+                    child: Padding(
+                      padding: EdgeInsets.all(layoutProperties.edgeInsets),
+                      child: Text(
+                        'older_siblings_explanation',
+                        style: theme.textTheme.labelMedium!.copyWith(color: theme.colorScheme.onTertiary),
+                        textScaleFactor: layoutProperties.textScalingFactor,
+                        textAlign: TextAlign.center,
+                      ).tr(),
                     ),
                   ),
-                )
-              ],
+                  SizedBox(height: layoutProperties.edgeInsets*2,),
+                  MediaQuery(
+                    data: mq.copyWith(
+                      textScaleFactor: layoutProperties.textScalingFactor,
+                    ),
+                    child: ChipsChoice<int>.single(
+                      wrapped: true,
+                      wrapCrossAlignment: WrapCrossAlignment.center,
+                      alignment: WrapAlignment.center,
+                      runAlignment: WrapAlignment.center,
+                      spacing: layoutProperties.edgeInsets,
+                      runSpacing: layoutProperties.edgeInsets,
+                      choiceCheckmark: true,
+                      choiceStyle: C2ChipStyle.filled(height: 32*layoutProperties.textScalingFactor, padding: EdgeInsets.all(layoutProperties.edgeInsets/2)),
+                      value: pi.olderSiblings,
+                      onChanged: (val) => setState(() => pi.olderSiblings = val),
+                      choiceItems: C2Choice.listFrom<int, String>(
+                        source: options,
+                        value: (i, v) => i,
+                        label: (i, v) => v,
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),
