@@ -120,7 +120,7 @@ class _PageGetDominantHandState extends State<PageGetDominantHand> {
                     choiceBuilder: (item, i) {
                       return CustomChip(
                         label: item.label,
-                        width: min(mq.size.width/4, 120*layoutProperties.textScalingFactor),
+                        width: min(mq.size.width/4.5, 120*layoutProperties.textScalingFactor),
                         selected: item.selected,
                         onSelect: item.select!,
                         svgPath: item.tooltip!,
