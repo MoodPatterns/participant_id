@@ -29,9 +29,9 @@ class AppData {
 
 
   static const double scalingFactorPhone =  1;
-  static const double scalingFactorTablet = 1.4;
-  static const double scalingFactorDesktop = 1.6;
-  static const double scalingFactorBigDesktop = 2.4;
+  static const double scalingFactorTablet = 1.2;
+  static const double scalingFactorDesktop = 1.5;
+  static const double scalingFactorBigDesktop = 2;
 
 
   static double maxWidth(double width) {

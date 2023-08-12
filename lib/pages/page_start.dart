@@ -39,17 +39,19 @@ class _PageStartState extends State<PageStart> {
 
     var cardWidth = List<double>.from([
       mq.size.width * 0.8,
-      mq.size.height * 0.8,
-      190 * pow(layoutProperties.textScalingFactor, 0.75)
+      //mq.size.height * 0.8,
+      180 * pow(layoutProperties.textScalingFactor, 0.75)
     ]).reduce(min);
 
-    if (cardWidth < min(layoutProperties.maxWidth, mq.size.width)/5){
-      cardWidth = max(min(layoutProperties.maxWidth, mq.size.width)/5, cardWidth);
-    } else if (cardWidth < min(mq.size.width, mq.size.height)/2.5 ){
-      cardWidth = max(min(mq.size.width, mq.size.height)/2.5, cardWidth);
-    } else if (cardWidth < min(mq.size.width, mq.size.height)*0.8){
-      cardWidth = max(min(mq.size.width, mq.size.height)*0.8, cardWidth);
+
+    if (cardWidth < min(layoutProperties.maxWidth, mq.size.width)/4.55){
+      cardWidth = max(min(layoutProperties.maxWidth, mq.size.width)/4.55, cardWidth);
+    } else if (cardWidth < min(layoutProperties.maxWidth, mq.size.width)/2.3 ){
+      cardWidth = max(min(layoutProperties.maxWidth, mq.size.width)/2.3, cardWidth);
+    } else if (cardWidth < min(layoutProperties.maxWidth, mq.size.width)*0.8){
+      cardWidth = max(min(layoutProperties.maxWidth, mq.size.width)*0.8, cardWidth);
     }
+
 
     return SafeArea(
       child: Scaffold(
