@@ -10,7 +10,7 @@
     "create_participant_id": "Eine Teilnehmer-ID erstellen",
     "device_info": "Geräteinfo",
     "dominant_hand_explanation": "Wenn du diese Frage nicht beantworten kannst, wähle bitte \"{}\".",
-    "dominant_hand_question": "Welche ist deine dominante Hand (d.h. die, mit der du schreibst)?\nDie linke oder die rechte Hand?",
+    "dominant_hand_question": "Welche ist deine dominante Hand (d.h. die, mit der du einen Stift zum Schreiben hältst)?\nDie linke oder die rechte Hand?",
     "feedback_": "Feedback (Fehlerbericht, Feature Request, ...)",
     "finger_equal": "gleich",
     "finger_index": "Zeigefinger",

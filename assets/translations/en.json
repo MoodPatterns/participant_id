@@ -10,7 +10,7 @@
   "create_participant_id": "Create a participant\u00a0Id",
   "device_info": "Device info",
   "dominant_hand_explanation": "If you cannot answer this question, please select \"{}\".",
-  "dominant_hand_question": "Which is your dominant hand (i.e., the one you are writing with):\nThe left or the right hand?",
+  "dominant_hand_question": "Which is your dominant hand (i.e., the one you hold a pen with):\nThe left or the right hand?",
   "feedback_": "Feedback (bug report, feature request, ...)",
   "finger_equal": "equal",
   "finger_index": "index finger",
