@@ -90,7 +90,7 @@ class MyApp extends StatelessWidget {
             // In this example we use the values for visual density and font
             // from a single static source, so we can change it easily there.
             visualDensity: AppData.visualDensity,
-            fontFamily: AppData.font,
+            //fontFamily: AppData.font,
           ),
           // We do the exact same definition for the dark theme, but using
           // FlexThemeData.dark() and the dark FlexSchemeColors in our
@@ -111,7 +111,7 @@ class MyApp extends StatelessWidget {
             appBarElevation: 0.5,
             //useSubThemes: themeController.useSubThemes,
             visualDensity: AppData.visualDensity,
-            fontFamily: AppData.font,
+            //fontFamily: AppData.font,
           ),
           // Use the dark or light theme based on controller setting.
           themeMode: themeController.themeMode,

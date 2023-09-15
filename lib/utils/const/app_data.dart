@@ -1,6 +1,6 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+//import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:participant_id/utils/models/layout_properties.dart';
 
@@ -77,7 +77,7 @@ class AppData {
 
   // Get the main font that is used in some of the examples.
   // Feel free to try different fonts.
-  static String? get font => GoogleFonts.roboto().fontFamily;
+  //static String? get font => GoogleFonts.roboto().fontFamily;
 
   // Defining the visual density here to so we can change it in one spot when
   // we want to try different options.
