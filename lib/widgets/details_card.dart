@@ -59,7 +59,7 @@ class DetailsCard extends StatelessWidget {
             child: SingleChildScrollView(
               child: RichText(
                 text: explanation,
-                textScaleFactor: textScalingFactor,
+                textScaler: TextScaler.linear(textScalingFactor),
               ),
             ),
           ),

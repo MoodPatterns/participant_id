@@ -65,6 +65,7 @@ flutter_native_splash:
     # apply when the device is in dark mode. If they are not specified, the app will use the
     # parameters from above.
     color_dark: "#2196F3"
+    icon_background_color_dark: "#2196F3"
     image_dark: assets/images/splash/image_dark_a12.png
     branding_dark: assets/images/splash/brand_dark.png
 
