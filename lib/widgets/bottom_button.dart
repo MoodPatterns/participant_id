@@ -25,7 +25,7 @@ class BottomButton extends StatelessWidget {
           Tooltip(
             message: isActive ? '' : message ?? 'input_missing'.tr(),
             child: AnimatedSwitcher(
-              duration: Durations.animationNormal,
+              duration: MyDurations.animationNormal,
               child: isActive ? ElevatedButton(
                 key: const ValueKey(true),
                 style: ElevatedButton.styleFrom(backgroundColor: theme.primaryColor, foregroundColor: theme.colorScheme.onPrimary,),
@@ -34,18 +34,18 @@ class BottomButton extends StatelessWidget {
                   padding: EdgeInsets.all(layoutProperties.edgeInsets/2),
                   child: Text(
                     text,
-                    textScaleFactor: layoutProperties.textScalingFactor,
+                    textScaler: TextScaler.linear(layoutProperties.textScalingFactor),
                   ),
                 ),
               ) : ElevatedButton(
                 key: const ValueKey(false),
-                style: ElevatedButton.styleFrom(backgroundColor: theme.colorScheme.background, foregroundColor: theme.disabledColor,),
+                style: ElevatedButton.styleFrom(backgroundColor: theme.colorScheme.surface, foregroundColor: theme.disabledColor,),
                 onPressed: (){},
                 child: Padding(
                   padding: EdgeInsets.all(layoutProperties.edgeInsets/2),
                   child: Text(
                     text,
-                    textScaleFactor: layoutProperties.textScalingFactor,
+                    textScaler: TextScaler.linear(layoutProperties.textScalingFactor),
                   ),
                 ),
               ),

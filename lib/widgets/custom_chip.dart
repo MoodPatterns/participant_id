@@ -14,20 +14,20 @@ class CustomChip extends StatelessWidget {
   final LayoutProperties layoutProperties;
 
   const CustomChip({
-    Key? key,
+    super.key,
     required this.label,
     this.width,
     this.selected = false,
     required this.onSelect,
     required this.svgPath, required this.layoutProperties,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
     return AnimatedContainer(
-      duration: Durations.animationNormal,
+      duration: MyDurations.animationNormal,
       margin: EdgeInsets.all(layoutProperties.edgeInsets),
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
@@ -58,7 +58,7 @@ class CustomChip extends StatelessWidget {
                   child: FittedBox(
                     fit: BoxFit.contain,
                     child: AnimatedSwitcher(
-                      duration: Durations.animationNormal,
+                      duration: MyDurations.animationNormal,
                       child: SvgPicture.asset(
                         svgPath,
                         key: ValueKey('$svgPath$selected'),
@@ -73,10 +73,10 @@ class CustomChip extends StatelessWidget {
                   ),
                 ),
                 AnimatedSwitcher(
-                    duration: Durations.animationNormal,
+                    duration: MyDurations.animationNormal,
                     child: Text(
                       label,
-                      textScaleFactor: layoutProperties.textScalingFactor,
+                      textScaler: TextScaler.linear(layoutProperties.textScalingFactor),
                       maxLines: 2,
                       key: ValueKey('$label$selected'),
                       style: theme.textTheme.labelLarge!.copyWith(
@@ -85,7 +85,7 @@ class CustomChip extends StatelessWidget {
                               : theme.colorScheme.onSurface),
                     )),
                 AnimatedSwitcher(
-                    duration: Durations.animationNormal,
+                    duration: MyDurations.animationNormal,
                     child: selected
                         ? Icon(
                             CupertinoIcons.checkmark_alt,

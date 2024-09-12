@@ -88,7 +88,7 @@ class _PageGetBirthdayState extends State<PageGetBirthday> {
                   SizedBox(height: layoutProperties.edgeInsets*2,),
                   MediaQuery(
                     data: mq.copyWith(
-                      textScaleFactor: pow(layoutProperties.textScalingFactor, 0.8).toDouble(), //rest does not scale - 1 wouldn't fit 4k layout
+                      textScaler: TextScaler.linear(pow(layoutProperties.textScalingFactor, 0.8).toDouble()), //rest does not scale - 1 wouldn't fit 4k layout
                     ),
                     child: DatePicker(
                       initialDate: pi.birthDay ?? DateTime(2000, 1, 1),
@@ -96,7 +96,7 @@ class _PageGetBirthdayState extends State<PageGetBirthday> {
                       minDate: DateTime(1900, 1, 1),
                       maxDate: DateTime.now().subtract(const Duration(days:365*6)),
                       slidersSize: 24 * layoutProperties.textScalingFactor,
-                      onDateChanged: (value) {
+                      onDateSelected: (value) {
                         setState(() {
                           pi.birthDay = value;
                         });
