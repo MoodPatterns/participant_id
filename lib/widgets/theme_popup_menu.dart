@@ -5,11 +5,11 @@ import '../utils/const/app_color.dart';
 
 class ThemePopupMenu extends StatelessWidget {
   const ThemePopupMenu({
-    Key? key,
+    super.key,
     required this.schemeIndex,
     required this.onChanged,
     this.contentPadding,
-  }) : super(key: key);
+  });
   final int schemeIndex;
   final ValueChanged<int> onChanged;
   // Defaults to 16, like ListTile does.

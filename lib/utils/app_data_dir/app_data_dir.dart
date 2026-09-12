@@ -1,3 +1,5 @@
+library;
+
 /// Conditional imports based on if 'dart.io' is supported.
 ///
 /// We export lib 'app_data_dir_web.dart', but if dart.io is supported

@@ -57,12 +57,12 @@ class PageAbout extends StatelessWidget {
                   SizedBox(height: layoutProperties.edgeInsets),
                   Text(
                     'app_name',
-                    textScaleFactor: layoutProperties.textScalingFactor,
+                    textScaler: TextScaler.linear(layoutProperties.textScalingFactor),
                     style: theme.textTheme.titleLarge,
                   ).tr(),
                   Text(
                     'version_build_',
-                    textScaleFactor: layoutProperties.textScalingFactor,
+                    textScaler: TextScaler.linear(layoutProperties.textScalingFactor),
                     style: theme.textTheme.labelMedium,
                   ).tr(namedArgs: {
                     'v': GetIt.I<PackageInfo>().version,
@@ -71,24 +71,24 @@ class PageAbout extends StatelessWidget {
                   SizedBox(height: layoutProperties.edgeInsets),
                   Text(
                     '©2023 Bernhard Piskernik',
-                    textScaleFactor: layoutProperties.textScalingFactor,
+                    textScaler: TextScaler.linear(layoutProperties.textScalingFactor),
                     style: theme.textTheme.titleSmall,
                   ),
                   SizedBox(height: layoutProperties.edgeInsets * 2),
                   Text(
                     'contact',
-                    textScaleFactor: layoutProperties.textScalingFactor,
+                    textScaler: TextScaler.linear(layoutProperties.textScalingFactor),
                     style: theme.textTheme.titleMedium,
                   ).tr(),
                   SizedBox(height: layoutProperties.edgeInsets),
                   Text(
                     'Mood Patterns',
-                    textScaleFactor: layoutProperties.textScalingFactor,
+                    textScaler: TextScaler.linear(layoutProperties.textScalingFactor),
                     style: theme.textTheme.labelLarge,
                   ),
                   Text(
                     'Bernhard Piskernik',
-                    textScaleFactor: layoutProperties.textScalingFactor,
+                    textScaler: TextScaler.linear(layoutProperties.textScalingFactor),
                     style: theme.textTheme.titleSmall,
                   ),
                   SizedBox(height: layoutProperties.edgeInsets),
@@ -108,7 +108,7 @@ class PageAbout extends StatelessWidget {
                           Text(
                             'contact@moodpatterns.info',
                             style: theme.textTheme.bodyMedium,
-                            textScaleFactor: layoutProperties.textScalingFactor,
+                            textScaler: TextScaler.linear(layoutProperties.textScalingFactor),
                           ),
                         ],
                       ),
@@ -129,7 +129,7 @@ class PageAbout extends StatelessWidget {
                             'www.moodpatterns.info',
                             style: theme.textTheme.bodyMedium!
                                 .copyWith(decoration: TextDecoration.underline),
-                            textScaleFactor: layoutProperties.textScalingFactor,
+                            textScaler: TextScaler.linear(layoutProperties.textScalingFactor),
                           ),
                         ],
                       ),
@@ -144,7 +144,7 @@ class PageAbout extends StatelessWidget {
                       Text(
                         'Ernst-Melchior-Gasse 10\n1020 Vienna\nAUSTRIA',
                         style: theme.textTheme.bodyMedium!,
-                        textScaleFactor: layoutProperties.textScalingFactor,
+                        textScaler: TextScaler.linear(layoutProperties.textScalingFactor),
                       ),
                     ],
                   ),
@@ -161,7 +161,7 @@ class PageAbout extends StatelessWidget {
                       },
                       child: Text(
                         'library_licenses',
-                        textScaleFactor: layoutProperties.textScalingFactor,
+                        textScaler: TextScaler.linear(layoutProperties.textScalingFactor),
                       ).tr())
                 ],
               ),

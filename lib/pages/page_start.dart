@@ -95,14 +95,14 @@ class _PageStartState extends State<PageStart> {
                         child: Text(
                           'create_participant_id',
                           style: theme.textTheme.displaySmall,
-                          textScaleFactor: layoutProperties.textScalingFactor,
+                          textScaler: TextScaler.linear(layoutProperties.textScalingFactor),
                           textAlign: TextAlign.center,
                         ).tr()),
                     SizedBox(height: layoutProperties.edgeInsets),
                     Text(
                       'short_description',
                       style: theme.textTheme.titleSmall,
-                      textScaleFactor: layoutProperties.textScalingFactor,
+                      textScaler: TextScaler.linear(layoutProperties.textScalingFactor),
                       textAlign: TextAlign.center,
                     ).tr(),
                     SizedBox(height: layoutProperties.edgeInsets),
@@ -121,7 +121,7 @@ class _PageStartState extends State<PageStart> {
                                           0.5
                                       ? Colors.black
                                       : Colors.white),
-                              textScaleFactor: layoutProperties.textScalingFactor,
+                              textScaler: TextScaler.linear(layoutProperties.textScalingFactor),
                             ).tr(),
                             SizedBox(height: layoutProperties.edgeInsets),
                             WrapSuper(

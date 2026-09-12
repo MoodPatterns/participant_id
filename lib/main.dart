@@ -48,7 +48,7 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key, required this.themeController}) : super(key: key);
+  const MyApp({super.key, required this.themeController});
   final ThemeController themeController;
   final useMaterial3 = true;
 

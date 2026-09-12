@@ -65,7 +65,7 @@ class _PageGetMotherMaidenNameState extends State<PageGetMotherMaidenName> {
                   Text(
                     'mother_maiden_name_question',
                     style: theme.textTheme.titleLarge,
-                    textScaleFactor: layoutProperties.textScalingFactor,
+                    textScaler: TextScaler.linear(layoutProperties.textScalingFactor),
                     textAlign: TextAlign.center,
                   ).tr(),
                   SizedBox(height: layoutProperties.edgeInsets,),
@@ -76,7 +76,7 @@ class _PageGetMotherMaidenNameState extends State<PageGetMotherMaidenName> {
                       child: Text(
                         'mother_maiden_name_explanation',
                         style: theme.textTheme.labelMedium!.copyWith(color: theme.colorScheme.onTertiary),
-                        textScaleFactor: layoutProperties.textScalingFactor,
+                        textScaler: TextScaler.linear(layoutProperties.textScalingFactor),
                         textAlign: TextAlign.center,
                       ).tr(),
                     ),
@@ -84,7 +84,7 @@ class _PageGetMotherMaidenNameState extends State<PageGetMotherMaidenName> {
                   SizedBox(height: layoutProperties.edgeInsets*2,),
                   MediaQuery(
                     data: mq.copyWith(
-                      textScaleFactor: layoutProperties.textScalingFactor,
+                      textScaler: TextScaler.linear(layoutProperties.textScalingFactor),
                     ),
                     child: TextFormField(
                       initialValue: pi.motherMaidenName,

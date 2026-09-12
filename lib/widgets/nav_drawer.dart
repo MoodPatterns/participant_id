@@ -22,7 +22,7 @@ import '../utils/const/app_data.dart';
 class NavDrawer extends StatelessWidget {
   final NavDrawerEnum selected;
 
-  const NavDrawer({Key? key, required this.selected}) : super(key: key);
+  const NavDrawer({super.key, required this.selected});
 
   @override
   Widget build(BuildContext context) {

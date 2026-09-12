@@ -78,7 +78,7 @@ class _PageGetLongFingerState extends State<PageGetLongFinger> {
                   Text(
                     'long_finger_question',
                     style: theme.textTheme.titleLarge,
-                    textScaleFactor: layoutProperties.textScalingFactor,
+                    textScaler: TextScaler.linear(layoutProperties.textScalingFactor),
                     textAlign: TextAlign.center,
                   ).tr(),
                   SizedBox(
@@ -92,7 +92,7 @@ class _PageGetLongFingerState extends State<PageGetLongFinger> {
                         'long_finger_explanation',
                         style: theme.textTheme.labelMedium!
                             .copyWith(color: theme.colorScheme.onTertiary),
-                        textScaleFactor: layoutProperties.textScalingFactor,
+                        textScaler: TextScaler.linear(layoutProperties.textScalingFactor),
                         textAlign: TextAlign.center,
                       ).tr(args: ['finger_equal'.tr()]),
                     ),

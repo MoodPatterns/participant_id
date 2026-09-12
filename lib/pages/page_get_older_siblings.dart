@@ -71,7 +71,7 @@ class _PageGetOlderSiblingsState extends State<PageGetOlderSiblings> {
                   Text(
                     'older_siblings_question',
                     style: theme.textTheme.titleLarge,
-                    textScaleFactor: layoutProperties.textScalingFactor,
+                    textScaler: TextScaler.linear(layoutProperties.textScalingFactor),
                     textAlign: TextAlign.center,
                   ).tr(),
                   SizedBox(height: layoutProperties.edgeInsets,),
@@ -82,7 +82,7 @@ class _PageGetOlderSiblingsState extends State<PageGetOlderSiblings> {
                       child: Text(
                         'older_siblings_explanation',
                         style: theme.textTheme.labelMedium!.copyWith(color: theme.colorScheme.onTertiary),
-                        textScaleFactor: layoutProperties.textScalingFactor,
+                        textScaler: TextScaler.linear(layoutProperties.textScalingFactor),
                         textAlign: TextAlign.center,
                       ).tr(),
                     ),
@@ -90,7 +90,7 @@ class _PageGetOlderSiblingsState extends State<PageGetOlderSiblings> {
                   SizedBox(height: layoutProperties.edgeInsets*2,),
                   MediaQuery(
                     data: mq.copyWith(
-                      textScaleFactor: layoutProperties.textScalingFactor,
+                      textScaler: TextScaler.linear(layoutProperties.textScalingFactor),
                     ),
                     child: ChipsChoice<int>.single(
                       wrapped: true,

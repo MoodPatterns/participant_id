@@ -78,7 +78,7 @@ class _PageGetDominantHandState extends State<PageGetDominantHand> {
                   Text(
                     'dominant_hand_question',
                     style: theme.textTheme.titleLarge,
-                    textScaleFactor: layoutProperties.textScalingFactor,
+                    textScaler: TextScaler.linear(layoutProperties.textScalingFactor),
                     textAlign: TextAlign.center,
                   ).tr(),
                   SizedBox(
@@ -92,7 +92,7 @@ class _PageGetDominantHandState extends State<PageGetDominantHand> {
                         'dominant_hand_explanation',
                         style: theme.textTheme.labelMedium!
                             .copyWith(color: theme.colorScheme.onTertiary),
-                        textScaleFactor: layoutProperties.textScalingFactor,
+                        textScaler: TextScaler.linear(layoutProperties.textScalingFactor),
                         textAlign: TextAlign.center,
                       ).tr(args: ['hand_both'.tr()]),
                     ),

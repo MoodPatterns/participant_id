@@ -69,7 +69,7 @@ class _PageGetBirthdayState extends State<PageGetBirthday> {
                   Text(
                     'birthday_question',
                     style: theme.textTheme.titleLarge,
-                    textScaleFactor: layoutProperties.textScalingFactor,
+                    textScaler: TextScaler.linear(layoutProperties.textScalingFactor),
                     textAlign: TextAlign.center,
                   ).tr(),
                   SizedBox(height: layoutProperties.edgeInsets,),
@@ -80,7 +80,7 @@ class _PageGetBirthdayState extends State<PageGetBirthday> {
                       child: Text(
                         'birthday_explanation',
                         style: theme.textTheme.labelMedium!.copyWith(color: theme.colorScheme.onTertiary),
-                        textScaleFactor: layoutProperties.textScalingFactor,
+                        textScaler: TextScaler.linear(layoutProperties.textScalingFactor),
                         textAlign: TextAlign.center,
                       ).tr(),
                     ),

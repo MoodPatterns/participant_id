@@ -52,7 +52,7 @@ class PageTheme extends StatelessWidget {
                   children: [
                     Text(
                       'theme',
-                      textScaleFactor: layoutProperties.textScalingFactor,
+                      textScaler: TextScaler.linear(layoutProperties.textScalingFactor),
                       style: theme.textTheme.titleLarge,
                     ).tr(),
                     // A 3-way theme toggle switch that shows the scheme.

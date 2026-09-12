@@ -50,10 +50,11 @@ class _PageShowIdState extends State<PageShowId> {
 
     var layoutProperties = AppData.layoutProperties(mq.size.width);
 
-    return WillPopScope(
-      onWillPop: () async {
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (bool didPop, Object? result) {
+        if (didPop) return;
         _exit();
-        return false;
       },
       child: SafeArea(
         top: false,
@@ -91,7 +92,7 @@ class _PageShowIdState extends State<PageShowId> {
                           Text(
                             'your_participant_id_',
                             style: theme.textTheme.titleLarge,
-                            textScaleFactor: layoutProperties.textScalingFactor,
+                            textScaler: TextScaler.linear(layoutProperties.textScalingFactor),
                             textAlign: TextAlign.center,
                           ).tr(),
                           SizedBox(height: layoutProperties.edgeInsets),
@@ -107,8 +108,7 @@ class _PageShowIdState extends State<PageShowId> {
                                   EdgeInsets.all(layoutProperties.edgeInsets),
                               child: Text(
                                 id!.id,
-                                textScaleFactor:
-                                    layoutProperties.textScalingFactor,
+                                textScaler: TextScaler.linear(layoutProperties.textScalingFactor),
                               ),
                             ),
                           ),
@@ -116,7 +116,7 @@ class _PageShowIdState extends State<PageShowId> {
                           Text(
                             'your_mnemonic_',
                             style: theme.textTheme.titleLarge,
-                            textScaleFactor: layoutProperties.textScalingFactor,
+                            textScaler: TextScaler.linear(layoutProperties.textScalingFactor),
                             textAlign: TextAlign.center,
                           ).tr(),
                           SizedBox(height: layoutProperties.edgeInsets),
@@ -137,8 +137,7 @@ class _PageShowIdState extends State<PageShowId> {
                                   children: id!.mnemonic
                                       .split(' ')
                                       .map((w) => Text(w,
-                                          textScaleFactor:
-                                              layoutProperties.textScalingFactor))
+                                          textScaler: TextScaler.linear(layoutProperties.textScalingFactor)))
                                       .toList(growable: false)),
                             ),
                           ),
@@ -146,7 +145,7 @@ class _PageShowIdState extends State<PageShowId> {
                           Text(
                             'your_qr_',
                             style: theme.textTheme.titleLarge,
-                            textScaleFactor: layoutProperties.textScalingFactor,
+                            textScaler: TextScaler.linear(layoutProperties.textScalingFactor),
                             textAlign: TextAlign.center,
                           ).tr(),
                           SizedBox(height: layoutProperties.edgeInsets),

@@ -68,7 +68,7 @@ class _PageGetFirstWordState extends State<PageGetFirstWord> {
                   Text(
                     'first_word_question',
                     style: theme.textTheme.titleLarge,
-                    textScaleFactor: layoutProperties.textScalingFactor,
+                    textScaler: TextScaler.linear(layoutProperties.textScalingFactor),
                     textAlign: TextAlign.center,
                   ).tr(),
                   SizedBox(
@@ -82,7 +82,7 @@ class _PageGetFirstWordState extends State<PageGetFirstWord> {
                         'first_word_explanation',
                         style: theme.textTheme.labelMedium!
                             .copyWith(color: theme.colorScheme.onTertiary),
-                        textScaleFactor: layoutProperties.textScalingFactor,
+                        textScaler: TextScaler.linear(layoutProperties.textScalingFactor),
                         textAlign: TextAlign.center,
                       ).tr(),
                     ),
@@ -92,7 +92,7 @@ class _PageGetFirstWordState extends State<PageGetFirstWord> {
                   ),
                   MediaQuery(
                     data: mq.copyWith(
-                      textScaleFactor: layoutProperties.textScalingFactor,
+                      textScaler: TextScaler.linear(layoutProperties.textScalingFactor),
                     ),
                     child: TextFormField(
                       initialValue: pi.firstWord,
