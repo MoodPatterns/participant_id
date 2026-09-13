@@ -19,9 +19,9 @@ tasks.register("clean", Delete) {
 
 subprojects {
     project.ext {
-        compileSdkVersion = 35
+        compileSdkVersion = 36
         buildToolsVersion = "35.0.0"
         minSdkVersion = 21
-        targetSdkVersion = 35
+        targetSdkVersion = 36
     }
 }
