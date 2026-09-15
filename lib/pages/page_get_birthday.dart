@@ -91,11 +91,10 @@ class _PageGetBirthdayState extends State<PageGetBirthday> {
                       textScaler: TextScaler.linear(pow(layoutProperties.textScalingFactor, 0.8).toDouble()), //rest does not scale - 1 wouldn't fit 4k layout
                     ),
                     child: DatePicker(
-                      initialDate: pi.birthDay ?? DateTime(2000, 1, 1),
+                      selectedDate: pi.birthDay ?? DateTime(2000, 1, 1),
                       initialPickerType: PickerType.years,
                       minDate: DateTime(1900, 1, 1),
                       maxDate: DateTime.now().subtract(const Duration(days:365*6)),
-                      slidersSize: 24 * layoutProperties.textScalingFactor,
                       onDateSelected: (value) {
                         setState(() {
                           pi.birthDay = value;

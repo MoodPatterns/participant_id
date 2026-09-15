@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Trans;
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:participant_id/pages/page_get_birthday.dart';
 import 'package:participant_id/utils/models/personal_information.dart';
 import 'package:participant_id/widgets/bottom_button.dart';
@@ -90,7 +89,7 @@ class _PageGetMotherMaidenNameState extends State<PageGetMotherMaidenName> {
                       initialValue: pi.motherMaidenName,
                       autofocus: true,
                       decoration: InputDecoration(
-                        icon: Icon(MdiIcons.commentAccountOutline),
+                        icon: const Icon(Icons.comment),
                         hintText: 'mother_maiden_name_hint'.tr(),
                         labelText: 'mother_maiden_name_label'.tr(),
                       ),

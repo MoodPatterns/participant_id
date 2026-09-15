@@ -37,8 +37,8 @@ class CustomChip extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.circular(selected ? 25 : 10)),
         border: Border.all(
           color: selected
-              ? theme.colorScheme.secondary.withOpacity(.38)
-              : theme.colorScheme.onSurface.withOpacity(.38),
+              ? theme.colorScheme.secondary.withValues(alpha: .38)
+              : theme.colorScheme.onSurface.withValues(alpha: .38),
           width: 1,
         ),
       ),

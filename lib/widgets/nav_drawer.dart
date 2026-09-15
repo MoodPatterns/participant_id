@@ -4,7 +4,6 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get_it/get_it.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import '../pages/page_about.dart';
 import '../pages/page_theme.dart';
@@ -124,7 +123,7 @@ class NavDrawer extends StatelessWidget {
           ),
           ListTile(
             title: const Text('source_code').tr(),
-            leading: Icon(MdiIcons.codeJson),
+            leading: const Icon(Icons.code),
             shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
                   topRight: Radius.circular(50),

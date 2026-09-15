@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Trans;
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:participant_id/pages/page_get_mother_maiden_name.dart';
 import 'package:participant_id/utils/models/personal_information.dart';
 import 'package:participant_id/widgets/bottom_button.dart';
@@ -98,7 +97,7 @@ class _PageGetFirstWordState extends State<PageGetFirstWord> {
                       initialValue: pi.firstWord,
                       autofocus: true,
                       decoration: InputDecoration(
-                        icon: Icon(MdiIcons.accountVoice),
+                        icon: const Icon(Icons.record_voice_over),
                         hintText: 'first_word_hint'.tr(),
                         labelText: 'first_word_label'.tr(),
                       ),

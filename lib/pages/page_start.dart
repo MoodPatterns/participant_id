@@ -6,7 +6,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_remix/flutter_remix.dart';
 import 'package:get/get.dart' hide Trans;
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:participant_id/pages/page_get_first_word.dart';
 import 'package:participant_id/utils/const/app_data.dart';
 import 'package:participant_id/utils/models/personal_information.dart';
@@ -155,7 +154,7 @@ class _PageStartState extends State<PageStart> {
                                     theme: theme,
                                     textScalingFactor:
                                         layoutProperties.textScalingFactor,
-                                    icon: MdiIcons.incognito,
+                                    icon: Icons.privacy_tip,
                                     header: 'anonymous'.tr(),
                                     headerStyle: theme.textTheme.headlineLarge!,
                                     explanation: TextSpan(
@@ -173,7 +172,7 @@ class _PageStartState extends State<PageStart> {
                                     theme: theme,
                                     textScalingFactor:
                                     layoutProperties.textScalingFactor,
-                                    icon: MdiIcons.repeatVariant,
+                                    icon: Icons.repeat,
                                     header: 'reproducible_stable'.tr(),
                                     headerStyle: theme.textTheme.headlineLarge!,
                                     explanation: TextSpan(
@@ -226,7 +225,7 @@ class _PageStartState extends State<PageStart> {
     );
   }
 
-  _launchRepo() async {
+  Future<void> _launchRepo() async {
     Uri url = Uri.parse('https://github.com/MoodPatterns/participant_id');
     if (await launchUrl(url)) {
       await launchUrl(url);
